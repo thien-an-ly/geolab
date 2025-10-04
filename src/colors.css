@@ -4,6 +4,9 @@
  */
 
 :root {
+  /* Layout Dimensions */
+  --navbar-height: 70px; /* Standard navbar height */
+
   /* Typography */
   --font-display: "Montserrat", "Impact", "Arial Black", sans-serif;
   --font-body: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -15,7 +18,7 @@
   --color-medium-blue: #2984b7; /* Medium blue - secondary accent */
 
   /* Extended Palette - Navy Variations */
-  --color-navy-darker: #0f1729; /* Darker navy for deep backgrounds - improved contrast */
+  --color-navy-darker: #0a0e1a; /* Much darker navy for deep backgrounds - maximum contrast */
   --color-navy-dark: #151f3a; /* Dark navy for hover states */
   --color-navy-light: #2d4586; /* Lighter navy for borders */
   --color-navy-lighter: #3d5a9e; /* Even lighter for subtle backgrounds */

@@ -1,21 +1,17 @@
 /* Navigation Bar Styles */
 #navigationBar {
-  position: absolute;
+  position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
   background-color: var(--color-background-overlay);
   color: var(--color-text-primary);
   z-index: 100;
-  box-shadow: 0 2px 8px var(--color-shadow-default);
-}
-
-.nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 30px;
   gap: 20px;
+  flex-shrink: 0; /* Prevent navbar from shrinking */
 }
 
 .nav-brand {

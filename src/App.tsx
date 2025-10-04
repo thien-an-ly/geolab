@@ -58,20 +58,19 @@ function App() {
       {activeTab === "map" ? (
         <>
           <div id="map">
+            <ControlSidebar
+              layers={layers}
+              onToggleLayer={handleToggleLayer}
+              isOpen={controlSidebarOpen}
+              onToggle={() => setControlSidebarOpen(!controlSidebarOpen)}
+            />
+            <Sidebar
+              isOpen={sidebarOpen}
+              onClose={() => setSidebarOpen(false)}
+              featureData={selectedFeature}
+            />
             <MapView layers={layers} onFeatureClick={handleFeatureClick} />
           </div>
-
-          <ControlSidebar
-            layers={layers}
-            onToggleLayer={handleToggleLayer}
-            isOpen={controlSidebarOpen}
-            onToggle={() => setControlSidebarOpen(!controlSidebarOpen)}
-          />
-          <Sidebar
-            isOpen={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-            featureData={selectedFeature}
-          />
         </>
       ) : (
         <Dashboard />

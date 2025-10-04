@@ -5,11 +5,11 @@
 
 /* Main Sidebar Container */
 .control-sidebar {
-  position: fixed;
-  top: 70px;
+  position: absolute;
+  top: 0;
   left: 0;
   width: 320px;
-  height: calc(100vh - 70px);
+  height: 100%;
   background-color: var(--color-background-panel);
   color: var(--color-text-primary);
   box-shadow: 2px 0 12px var(--color-shadow-strong);
@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: var(--color-navy);
+  background-color: var(--color-background-panel);
   border-bottom: 2px solid var(--color-border-accent);
   position: sticky;
   top: 0;
@@ -201,8 +201,8 @@
 
 /* Drawer Button */
 .drawer-button {
-  position: fixed;
-  top: 85px;
+  position: absolute;
+  top: 15px;
   left: 15px;
   width: 48px;
   height: 48px;
@@ -234,8 +234,8 @@
 
 /* Sidebar Overlay */
 .sidebar-overlay {
-  position: fixed;
-  top: 70px;
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -259,14 +259,14 @@
 }
 
 .control-sidebar::-webkit-scrollbar-track {
-  background: var(--color-navy-darker);
+  background: var(--color-background-panel);
 }
 
 .control-sidebar::-webkit-scrollbar-thumb {
-  background: var(--color-navy-light);
+  background: var(--color-background-card);
   border-radius: 4px;
 }
 
 .control-sidebar::-webkit-scrollbar-thumb:hover {
-  background: var(--color-medium-blue);
+  background: var(--color-cyan-subtle);
 }

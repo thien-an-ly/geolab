@@ -5,15 +5,14 @@
 
 /* Map Container */
 #map {
-  position: absolute;
-  top: 70px;
-  bottom: 0;
+  flex: 1;
+  position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 /* Mapbox Control Positioning */
 .mapboxgl-ctrl-top-left {
-  top: 100px !important;
   z-index: 50;
 }
 
