@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MapLayer } from "../../types";
 import { DATA_SOURCES } from "../../config/dataSources";
 import "./ControlSidebar.css";
+import { getLayerIcon } from "../../utils/layerHelpers";
 
 interface ControlSidebarProps {
   layers: MapLayer[];
@@ -35,27 +36,8 @@ export function ControlSidebar({
     ["gain", "loss", "mangrove", "forest"].includes(l.type)
   );
   const environmentalLayers = layers.filter((l) =>
-    ["water", "carbon"].includes(l.type)
+    ["flood", "carbon"].includes(l.type)
   );
-
-  const getLayerIcon = (type: MapLayer["type"]) => {
-    switch (type) {
-      case "gain":
-        return "🟢";
-      case "loss":
-        return "🔴";
-      case "mangrove":
-        return "🌿";
-      case "forest":
-        return "🌲";
-      case "water":
-        return "💧";
-      case "carbon":
-        return "⚠️";
-      default:
-        return "📍";
-    }
-  };
 
   return (
     <>

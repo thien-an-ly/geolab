@@ -21,8 +21,16 @@ export interface MapLayer {
   id: string;
   name: string;
   visible: boolean;
-  type: "mangrove" | "forest" | "water" | "carbon" | "gain" | "loss";
+  type: MapLayerType;
 }
+
+export type MapLayerType =
+  | "gain"
+  | "loss"
+  | "mangrove"
+  | "forest"
+  | "flood"
+  | "carbon";
 
 export interface KakaduRegion {
   name: string;

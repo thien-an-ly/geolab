@@ -1,0 +1,193 @@
+/* Time Slider Component Styles */
+
+.time-slider-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--color-background-panel);
+  border: 2px solid var(--color-border-accent);
+  color: var(--color-cyan);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px var(--color-shadow-default);
+  transition: all 0.3s ease;
+  z-index: 85;
+}
+
+.time-slider-toggle-button:hover {
+  background-color: var(--color-background-hover);
+  border-color: var(--color-cyan);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px var(--color-shadow-glow);
+}
+
+.time-slider-toggle-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.time-slider-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background-panel);
+  border-top: 2px solid var(--color-border-accent);
+  box-shadow: 0 -2px 12px var(--color-shadow-strong);
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 80;
+  padding: 20px;
+}
+
+.time-slider-panel.open {
+  transform: translateY(0);
+}
+
+.time-slider-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.time-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.time-slider-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.current-year {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-cyan);
+}
+
+.time-slider-controls {
+  width: 100%;
+  padding-left: 80px;
+  padding-right: 10px;
+}
+
+.slider-track {
+  width: 100%;
+  margin-bottom: 2px;
+  position: relative;
+}
+
+.year-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-border-accent);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.year-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  border: 2px solid var(--color-background-panel);
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--color-shadow-default);
+  transition: all 0.2s ease;
+}
+
+.year-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.year-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  border: 2px solid var(--color-background-panel);
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--color-shadow-default);
+  transition: all 0.2s ease;
+}
+
+.year-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.year-labels {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  transform: translateY(-2px);
+}
+
+.year-label-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+}
+
+.slider-stop {
+  width: 2px;
+  height: 8px;
+  background-color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.year-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .time-slider-toggle-button {
+    bottom: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .time-slider-panel {
+    padding: 15px;
+  }
+
+  .time-slider-controls {
+    padding-left: 70px;
+    padding-right: 10px;
+  }
+
+  .time-slider-header h3 {
+    font-size: 1rem;
+  }
+
+  .current-year {
+    font-size: 1.3rem;
+  }
+}
+
+/* Time slider sits below map controls (z-index: 90-95) */
+/* Button: 85, Panel: 80 */

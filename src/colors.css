@@ -4,9 +4,6 @@
  */
 
 :root {
-  /* Layout Dimensions */
-  --navbar-height: 70px; /* Standard navbar height */
-
   /* Typography */
   --font-display: "Montserrat", "Impact", "Arial Black", sans-serif;
   --font-body: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -32,7 +29,7 @@
     15,
     23,
     41,
-    0.95
+    0.8
   ); /* Darker transparent for overlays */
 
   /* Extended Palette - Cyan Variations */

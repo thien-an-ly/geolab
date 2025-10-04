@@ -6,3 +6,4 @@ export { MapView } from "./map-view";
 export { Navigation } from "./navigation";
 export { Sidebar } from "./sidebar";
 export { TimeSeriesChart } from "./time-series-chart";
+export { TimeSlider } from "./time-slider";

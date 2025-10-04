@@ -1,9 +1,10 @@
 // Centralized configuration for all GeoJSON data sources
+import { type MapLayerType } from "../types";
 
 export interface DataSourceConfig {
   id: string;
   name: string;
-  layerType: "gain" | "loss" | "mangrove" | "forest" | "water" | "carbon";
+  layerType: MapLayerType;
   dataUrl: string;
   style: {
     fillColor: string;
@@ -70,6 +71,23 @@ export const DATA_SOURCES: DataSourceConfig[] = [
       source: "Landsat analysis",
     },
   },
+  {
+    id: "flood",
+    name: "Flood Inundation",
+    layerType: "flood",
+    dataUrl: "/data/flood/Kakadu_FloodOnly_2024.geojson",
+    style: {
+      fillColor: "#00bfff",
+      fillOpacity: 0.5,
+      lineColor: "#0080ff",
+      lineWidth: 1.5,
+    },
+    metadata: {
+      description: "Flood/drought signals from Sentinel-1 SAR",
+      year: "2024",
+      source: "Sentinel-1 SAR analysis",
+    },
+  },
   // Add more data sources here as needed
   // Example for future mangrove data:
   // {
@@ -96,4 +114,32 @@ export function getDataSourceByLayerType(
 // Helper to get all data source IDs
 export function getAllDataSourceIds(): string[] {
   return DATA_SOURCES.map((source) => source.id);
+}
+
+// Helper to get data URL for a specific year and layer type
+export function getDataUrlForYear(
+  layerType: MapLayerType,
+  year: number
+): string {
+  // For flood data, we have yearly datasets
+  if (layerType === "flood") {
+    return `/data/flood/Kakadu_FloodOnly_${year}.geojson`;
+  }
+
+  // For mangrove data, we have yearly datasets
+  if (layerType === "mangrove") {
+    return `/data/mangrove/M_${year}.geojson`;
+  }
+
+  // For other layer types, return the default URL
+  const source = DATA_SOURCES.find((s) => s.layerType === layerType);
+  return source?.dataUrl || "";
+}
+
+// Helper to update data source URL for a given year
+export function updateDataSourcesForYear(year: number): DataSourceConfig[] {
+  return DATA_SOURCES.map((source) => ({
+    ...source,
+    dataUrl: getDataUrlForYear(source.layerType, year),
+  }));
 }

@@ -5,12 +5,15 @@ import {
   Sidebar,
   Navigation,
   Dashboard,
+  TimeSlider,
 } from "./components";
+import {} from "./components/time-slider";
 import type { MapLayer } from "./types";
 import "./styles.css";
 
 function App() {
   const [activeTab, setActiveTab] = useState<"map" | "dashboard">("map");
+  const [currentYear, setCurrentYear] = useState(2024);
   const [layers, setLayers] = useState<MapLayer[]>([
     {
       id: "gain",
@@ -26,12 +29,13 @@ function App() {
       type: "mangrove",
     },
     { id: "forest", name: "Degraded Forests", visible: false, type: "forest" },
-    { id: "water", name: "Hydrological Shifts", visible: false, type: "water" },
+    { id: "flood", name: "Flood Inundation", visible: false, type: "flood" },
     { id: "carbon", name: "Carbon Loss Areas", visible: false, type: "carbon" },
   ]);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [controlSidebarOpen, setControlSidebarOpen] = useState(false);
+  const [timeSliderOpen, setTimeSliderOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<{
     properties: Record<string, unknown>;
   } | null>(null);
@@ -49,6 +53,11 @@ function App() {
   }) => {
     setSelectedFeature(feature);
     setSidebarOpen(true);
+  };
+
+  const handleYearChange = (year: number) => {
+    setCurrentYear(year);
+    console.log(`Year changed to ${year}`);
   };
 
   return (
@@ -69,7 +78,17 @@ function App() {
               onClose={() => setSidebarOpen(false)}
               featureData={selectedFeature}
             />
-            <MapView layers={layers} onFeatureClick={handleFeatureClick} />
+            <MapView
+              layers={layers}
+              currentYear={currentYear}
+              onFeatureClick={handleFeatureClick}
+            />
+            <TimeSlider
+              isOpen={timeSliderOpen}
+              onToggle={() => setTimeSliderOpen(!timeSliderOpen)}
+              initialYear={currentYear}
+              onYearChange={handleYearChange}
+            />
           </div>
         </>
       ) : (
