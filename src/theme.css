@@ -78,6 +78,9 @@
   --color-border-accent: var(--color-cyan);
   --color-border-subtle: rgba(99, 201, 214, 0.2);
 
+  /* Component-specific borders */
+  --border-sidebar-header: 2px solid var(--color-border-accent);
+
   --color-shadow-default: rgba(0, 0, 0, 0.5);
   --color-shadow-strong: rgba(0, 0, 0, 0.7);
   --color-shadow-subtle: rgba(0, 0, 0, 0.3);

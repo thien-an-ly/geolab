@@ -16,7 +16,7 @@ interface TimeSeriesChartProps {
   title: string;
 }
 
-// Color palette from app colors.css
+// Color palette from app theme.css
 const COLORS = {
   ndvi: "#4ade80", // --color-success
   flood: "#63c9d6", // --color-cyan

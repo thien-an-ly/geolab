@@ -8,7 +8,7 @@ import "./MapView.css";
 interface MapViewProps {
   layers: MapLayer[];
   currentYear: number;
-  onFeatureClick?: (feature: { properties: Record<string, unknown> }) => void;
+  onFeatureClick?: (feature: Record<string, unknown>) => void;
 }
 
 // Component to initialize all layers once on map load
@@ -19,7 +19,7 @@ function LayerInitializer({
 }: {
   layers: MapLayer[];
   currentYear: number;
-  onFeatureClick?: (feature: { properties: Record<string, unknown> }) => void;
+  onFeatureClick?: (feature: Record<string, unknown>) => void;
 }) {
   const { current: mapRef } = useMap();
   const initializationAttempted = useRef(false);
@@ -120,12 +120,9 @@ function LayerInitializer({
           if (onFeatureClick && map.getLayer(fillLayerId)) {
             const handleClick = (e: mapboxgl.MapMouseEvent) => {
               if (e.features && e.features.length > 0) {
-                onFeatureClick({
-                  properties: e.features[0].properties as Record<
-                    string,
-                    unknown
-                  >,
-                });
+                onFeatureClick(
+                  e.features[0].properties as Record<string, unknown>
+                );
               }
             };
 

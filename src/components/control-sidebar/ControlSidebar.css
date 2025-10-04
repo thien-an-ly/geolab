@@ -30,8 +30,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: var(--color-background-panel);
-  border-bottom: 2px solid var(--color-border-accent);
+  background-color: var(--color-background-secondary);
+  border-bottom: var(--border-sidebar-header);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -42,7 +42,7 @@
   font-size: 20px;
   font-family: var(--font-display);
   font-weight: 700;
-  color: var(--color-cyan);
+  color: var(--color-text-primary);
 }
 
 .close-sidebar-button {
