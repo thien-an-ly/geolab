@@ -1,0 +1,71 @@
+/* Navigation Bar Styles */
+#navigationBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  gap: 20px;
+}
+
+.nav-brand {
+  flex: 1;
+}
+
+.nav-brand h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Impact", "Arial Black", sans-serif;
+  -webkit-text-stroke: 0.5px black;
+  line-height: 1.2;
+}
+
+.nav-brand p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.2;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  padding: 10px 24px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-tab.active {
+  color: #ffd700;
+  background-color: rgba(255, 215, 0, 0.15);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+}

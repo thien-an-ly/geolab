@@ -1,0 +1,354 @@
+/* Basic body styles to ensure no default margins/padding and a sans-serif font */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Styles for the map container to make it fill the entire viewport */
+#map {
+  position: absolute; /* Positioned relative to the nearest positioned ancestor (body in this case) */
+  top: 0; /* Aligned to the top edge */
+  bottom: 0; /* Aligned to the bottom edge */
+  width: 100%; /* Occupy full width of the parent */
+}
+
+/* Title Bar styles - positioned at the very top of the map */
+#titleBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+  color: white; /* White text color */
+  padding: 15px 20px; /* Padding inside the title bar */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  z-index: 100; /* Ensures the title bar is above the map */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow for depth */
+  text-align: center; /* Centers the text within the title bar */
+}
+
+#titleBar h1 {
+  margin: 0; /* Remove default margin for the heading */
+  font-size: 24px; /* Font size for the main title */
+  font-weight: bold; /* Bold font weight */
+  letter-spacing: 1px; /* Spacing between letters */
+  color: #ffd700; /* Gold color for the title for prominence */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better visibility */
+  font-family: "Impact", "Arial Black", sans-serif; /* A strong, impactful font */
+  -webkit-text-stroke: 1px black; /* Webkit-specific text stroke for outline effect */
+}
+
+#titleBar p {
+  margin: 5px 0 0; /* Margin for the descriptive paragraph below the title */
+  font-size: 14px; /* Font size for the paragraph */
+  color: #ccc; /* Lighter grey color for less emphasis */
+}
+
+/* Sidebar styles - positioned on the right, appears on top of other elements when active */
+#sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px; /* Fixed width of the sidebar */
+  height: 100%; /* Occupy full height of the viewport */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  color: white; /* White text color */
+  padding: 20px; /* Padding inside the sidebar */
+  overflow-y: auto; /* Enables vertical scrolling if content exceeds height */
+  z-index: 200; /* Higher z-index to be above the title bar and other panels */
+  font-size: 13px; /* Smaller font size for sidebar content */
+  box-sizing: border-box; /* Include padding in the element's total dimensions */
+  display: none; /* Hidden by default; JavaScript will make it visible */
+}
+
+#sidebar h3 {
+  margin-top: 0; /* Remove top margin for headings within the sidebar */
+  font-size: 16px; /* Font size for sidebar headings */
+}
+
+#sidebar table {
+  width: 100%; /* Table fills the width of the sidebar */
+  border-collapse: collapse; /* Collapses table borders into a single border */
+}
+
+#sidebar td {
+  padding: 6px 4px; /* Padding for table cells */
+}
+
+#sidebar td:first-child {
+  font-weight: bold; /* Bold text for the first column of the table */
+  width: 40%; /* Allocate 40% width to the first column */
+}
+
+/* Close button for the sidebar */
+#closeSidebar {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: white; /* White color for the 'x' */
+  font-size: 20px; /* Larger font size for visibility */
+  font-weight: bold; /* Bold font weight */
+  cursor: pointer; /* Changes cursor to pointer to indicate clickability */
+  z-index: 10000; /* Very high z-index to ensure it's always clickable above other content */
+}
+
+#closeSidebar:hover {
+  color: #ff6666; /* Changes color to a light red on hover for visual feedback */
+}
+
+/* Adjustments for Mapbox default controls to prevent overlap with custom elements */
+.mapboxgl-ctrl-top-left {
+  top: 100px !important; /* Pushes Mapbox controls down, below the title bar */
+  z-index: 50; /* Lower z-index than title bar but above the map */
+}
+
+.mapboxgl-ctrl-bottom-right {
+  margin-bottom: 5px !important; /* Adjusts bottom margin */
+  z-index: 50; /* Same z-index as other controls */
+}
+
+/* Styling for Mapbox control groups (e.g., zoom buttons) */
+.mapboxgl-ctrl-group {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ) !important; /* Semi-transparent dark background */
+  border-radius: 4px !important; /* Rounded corners */
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.2); /* Subtle white shadow */
+}
+
+/* Inverts colors of Mapbox control icons for better visibility on a dark background */
+.mapboxgl-ctrl-icon {
+  filter: invert(1);
+}
+
+/* Left Panel (Legend) styles - positioned at the bottom-left of the map */
+#leftPanel {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  color: white; /* White text color */
+  padding: 15px; /* Padding inside the panel */
+  font-size: 13px; /* Smaller font size */
+  border-radius: 6px; /* Rounded corners */
+  z-index: 50; /* Similar z-index to Mapbox controls */
+  max-width: 250px; /* Maximum width of the panel */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Subtle white shadow */
+  display: block; /* Visible by default */
+}
+
+#leftPanel strong {
+  font-size: 14px; /* Slightly larger font for section titles in the legend */
+  display: block; /* Makes the strong tag a block-level element */
+  margin-bottom: 6px; /* Margin below the section title */
+}
+
+#leftPanel label {
+  display: block; /* Each label takes its own line */
+  margin: 3px 0; /* Vertical margin for labels */
+}
+
+/* Styles for color swatches used in the legend */
+.legend-color {
+  display: inline-block; /* Allows side-by-side display with text */
+  width: 12px; /* Fixed width of the color swatch */
+  height: 12px; /* Fixed height of the color swatch */
+  margin-right: 6px; /* Spacing to the right of the swatch */
+  vertical-align: middle; /* Aligns the swatch vertically with text */
+}
+
+/* Styles for circle samples used in the legend */
+.circle-legend {
+  display: flex; /* Uses flexbox for alignment of circle and text */
+  align-items: center; /* Vertically aligns items in the center */
+  margin-top: 5px; /* Top margin for each circle legend item */
+}
+
+.circle-sample {
+  width: 12px; /* Fixed width of the circle sample */
+  height: 12px; /* Fixed height of the circle sample */
+  border-radius: 50%; /* Makes the element a perfect circle */
+  margin-right: 6px; /* Spacing to the right of the circle */
+}
+
+/* General styles for sections within the legend */
+.legend-section {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly lighter background for sections */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for separation */
+  padding: 10px; /* Padding inside each section */
+  border-radius: 5px; /* Rounded corners for sections */
+}
+
+.legend-section:not(:last-child) {
+  margin-bottom: 10px; /* Margin between legend sections */
+}
+
+/* Toggle Layers Panel styles - positioned at the top-right of the map */
+#toggleLayersPanel {
+  position: absolute;
+  top: 100px; /* Positioned below the title bar */
+  right: 10px; /* Default right position (when sidebar is closed) */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  color: white; /* White text color */
+  padding: 10px 15px; /* Padding inside the panel */
+  font-size: 13px; /* Smaller font size */
+  border-radius: 6px; /* Rounded corners */
+  z-index: 90; /* Higher than Mapbox controls, lower than title bar and sidebar */
+  max-width: 180px; /* Maximum width of the panel */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Subtle white shadow */
+  transition: right 0.3s ease-out; /* Smooth transition for repositioning when sidebar opens/closes */
+}
+
+/* Styles for individual collapsible sections within the toggle panel */
+.collapsible-section {
+  margin-bottom: 10px; /* Margin between collapsible sections */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Slightly darker background for sections */
+}
+
+.collapsible-header {
+  margin: 0; /* Remove default margin for header */
+  font-size: 14px; /* Font size for the header text */
+  cursor: pointer; /* Indicates the header is clickable */
+  display: flex; /* Uses flexbox for aligning content and arrow */
+  justify-content: space-between; /* Puts space between text and arrow */
+  align-items: center; /* Vertically centers text and arrow */
+  padding: 8px 10px; /* Padding inside the header */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Slightly lighter background for the header */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Bottom border for separation */
+  border-top-left-radius: 5px; /* Rounded top-left corner */
+  border-top-right-radius: 5px; /* Rounded top-right corner */
+}
+
+/* Arrow indicator for collapsible sections */
+.collapsible-header::after {
+  content: "▼"; /* Down arrow character */
+  font-size: 10px; /* Smaller font size for the arrow */
+  margin-left: 5px; /* Spacing between text and arrow */
+  transition: transform 0.2s; /* Smooth rotation animation for the arrow */
+}
+
+/* When the section is expanded, change the arrow to point up */
+.collapsible-section.expanded .collapsible-header::after {
+  content: "▲"; /* Up arrow character */
+  transform: rotate(
+    0deg
+  ); /* Ensures no unintended rotation, just content change */
+}
+
+.collapsible-content {
+  overflow: hidden; /* Hides content that exceeds max-height */
+  max-height: 0; /* Hides content by default (collapsed state) */
+  transition: max-height 0.3s ease-out; /* Smooth expand/collapse animation for max-height */
+  padding: 0 10px; /* Horizontal padding for content */
+  padding-bottom: 5px; /* Bottom padding for collapsed state */
+}
+
+/* When the section is expanded, set a max-height to reveal content */
+.collapsible-section.expanded .collapsible-content {
+  max-height: 200px; /* Maximum height when expanded (adjust as needed to fit content) */
+  padding-top: 5px; /* Top padding when expanded */
+  padding-bottom: 10px; /* Increased bottom padding when expanded */
+}
+
+.collapsible-section .collapsible-content label {
+  display: block; /* Each label on its own line */
+  padding: 4px 0; /* Vertical padding for labels within collapsible content */
+  cursor: pointer; /* Shows pointer cursor on hover */
+}
+
+/* Remove bottom margin for the last collapsible section in the panel */
+#toggleLayersPanel .collapsible-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Dashboard Styles */
+#dashboard {
+  position: absolute;
+  top: 70px; /* Below compact navigation bar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-section {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.dashboard-section h2 {
+  color: #ffd700;
+  margin-top: 0;
+  font-size: 24px;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.dashboard-section h3 {
+  color: #ffa500;
+  margin-top: 25px;
+  font-size: 18px;
+}
+
+.dashboard-section p {
+  line-height: 1.8;
+  color: #ddd;
+  margin: 10px 0;
+}
+
+.dashboard-section ul {
+  line-height: 2;
+  color: #ddd;
+  padding-left: 20px;
+}
+
+.dashboard-section li {
+  margin: 8px 0;
+}
+
+.dashboard-section strong {
+  color: #ffd700;
+}
+
+/* Adjust map positioning when navigation is present */
+#map {
+  top: 70px; /* Below compact navigation bar */
+}
+
+/* Adjust other panels for navigation bar */
+#toggleLayersPanel {
+  top: 80px; /* Below compact navigation bar */
+}

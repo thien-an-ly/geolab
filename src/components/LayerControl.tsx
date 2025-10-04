@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { MapLayer } from "../types";
 
 interface LayerControlProps {
@@ -9,8 +10,33 @@ export default function LayerControl({
   layers,
   onToggleLayer,
 }: LayerControlProps) {
+  const [expandedSections, setExpandedSections] = useState<{
+    [key: string]: boolean;
+  }>({
+    vegetation: true,
+    environmental: false,
+  });
+
+  const toggleSection = (section: string) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  const vegetationLayers = layers.filter((l) =>
+    ["gain", "loss", "mangrove", "forest"].includes(l.type)
+  );
+  const environmentalLayers = layers.filter((l) =>
+    ["water", "carbon"].includes(l.type)
+  );
+
   const getLayerIcon = (type: MapLayer["type"]) => {
     switch (type) {
+      case "gain":
+        return "🟢";
+      case "loss":
+        return "🔴";
       case "mangrove":
         return "🌿";
       case "forest":
@@ -25,47 +51,60 @@ export default function LayerControl({
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: "10px",
-        left: "10px",
-        background: "white",
-        padding: "1rem",
-        borderRadius: "8px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-        minWidth: "200px",
-        zIndex: 1,
-      }}
-    >
-      <h3
-        style={{ margin: "0 0 1rem 0", fontSize: "1rem", fontWeight: "bold" }}
+    <div id="toggleLayersPanel">
+      <div
+        className={`collapsible-section ${
+          expandedSections.vegetation ? "expanded" : ""
+        }`}
       >
-        Layers
-      </h3>
-      {layers.map((layer) => (
-        <div
-          key={layer.id}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "0.75rem",
-            cursor: "pointer",
-          }}
-          onClick={() => onToggleLayer(layer.id)}
+        <h3
+          className="collapsible-header"
+          onClick={() => toggleSection("vegetation")}
         >
-          <input
-            type="checkbox"
-            checked={layer.visible}
-            onChange={() => onToggleLayer(layer.id)}
-            style={{ marginRight: "0.5rem", cursor: "pointer" }}
-          />
-          <span style={{ marginRight: "0.5rem" }}>
-            {getLayerIcon(layer.type)}
-          </span>
-          <span style={{ fontSize: "0.9rem" }}>{layer.name}</span>
+          Vegetation
+        </h3>
+        <div className="collapsible-content">
+          {vegetationLayers.map((layer) => (
+            <label key={layer.id}>
+              <input
+                type="checkbox"
+                checked={layer.visible}
+                onChange={() => onToggleLayer(layer.id)}
+              />
+              <span style={{ marginLeft: "5px" }}>
+                {getLayerIcon(layer.type)} {layer.name}
+              </span>
+            </label>
+          ))}
         </div>
-      ))}
+      </div>
+
+      <div
+        className={`collapsible-section ${
+          expandedSections.environmental ? "expanded" : ""
+        }`}
+      >
+        <h3
+          className="collapsible-header"
+          onClick={() => toggleSection("environmental")}
+        >
+          Environmental
+        </h3>
+        <div className="collapsible-content">
+          {environmentalLayers.map((layer) => (
+            <label key={layer.id}>
+              <input
+                type="checkbox"
+                checked={layer.visible}
+                onChange={() => onToggleLayer(layer.id)}
+              />
+              <span style={{ marginLeft: "5px" }}>
+                {getLayerIcon(layer.type)} {layer.name}
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
