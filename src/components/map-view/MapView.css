@@ -1,0 +1,34 @@
+/**
+ * MapView Component Styles
+ * Map container and Mapbox GL control customizations
+ */
+
+/* Map Container */
+#map {
+  position: absolute;
+  top: 70px;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Mapbox Control Positioning */
+.mapboxgl-ctrl-top-left {
+  top: 100px !important;
+  z-index: 50;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  margin-bottom: 5px !important;
+  z-index: 50;
+}
+
+/* Mapbox Control Styling */
+.mapboxgl-ctrl-group {
+  background-color: var(--color-background-panel) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 4px var(--color-shadow-glow);
+}
+
+.mapboxgl-ctrl-icon {
+  filter: invert(1);
+}

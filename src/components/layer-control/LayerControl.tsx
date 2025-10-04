@@ -1,15 +1,13 @@
 import { useState } from "react";
-import type { MapLayer } from "../types";
+import type { MapLayer } from "../../types";
+import "./LayerControl.css";
 
 interface LayerControlProps {
   layers: MapLayer[];
   onToggleLayer: (layerId: string) => void;
 }
 
-export default function LayerControl({
-  layers,
-  onToggleLayer,
-}: LayerControlProps) {
+export function LayerControl({ layers, onToggleLayer }: LayerControlProps) {
   const [expandedSections, setExpandedSections] = useState<{
     [key: string]: boolean;
   }>({

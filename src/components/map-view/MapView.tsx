@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import Map, { NavigationControl, useMap } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import type { MapLayer } from "../types";
-import { DATA_SOURCES } from "../config/dataSources";
+import type { MapLayer } from "../../types";
+import { DATA_SOURCES } from "../../config/dataSources";
+import "./MapView.css";
 
 interface MapViewProps {
   layers: MapLayer[];
@@ -169,7 +170,7 @@ function LayerInitializer({
   return null;
 }
 
-export default function MapView({ layers, onFeatureClick }: MapViewProps) {
+export function MapView({ layers, onFeatureClick }: MapViewProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (

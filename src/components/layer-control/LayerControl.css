@@ -1,0 +1,83 @@
+/**
+ * Layer Control Component Styles
+ * Top-right panel for toggling map layer visibility
+ */
+
+/* Main Layer Control Panel */
+#toggleLayersPanel {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  background-color: var(--color-background-panel);
+  color: var(--color-text-primary);
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 6px;
+  z-index: 90;
+  max-width: 180px;
+  box-shadow: 0 0 8px var(--color-shadow-glow);
+  transition: right 0.3s ease-out;
+}
+
+/* Collapsible Sections */
+.collapsible-section {
+  margin-bottom: 10px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 5px;
+  background-color: var(--color-navy-subtle);
+}
+
+.collapsible-header {
+  margin: 0;
+  font-size: 14px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background-color: var(--color-background-card);
+  border-bottom: 1px solid var(--color-border-subtle);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Arrow Indicator */
+.collapsible-header::after {
+  content: "▼";
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform 0.2s;
+}
+
+.collapsible-section.expanded .collapsible-header::after {
+  content: "▲";
+  transform: rotate(0deg);
+}
+
+/* Collapsible Content */
+.collapsible-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+  padding: 0 10px;
+  padding-bottom: 5px;
+}
+
+.collapsible-section.expanded .collapsible-content {
+  max-height: 200px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.collapsible-section .collapsible-content label {
+  display: block;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+/* Remove bottom margin for last section */
+#toggleLayersPanel .collapsible-section:last-child {
+  margin-bottom: 0;
+}

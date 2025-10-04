@@ -1,12 +1,13 @@
 import { useState } from "react";
-import MapView from "./components/MapView";
-import LayerControl from "./components/LayerControl";
-import Legend from "./components/Legend";
-import Sidebar from "./components/Sidebar";
-import Navigation from "./components/Navigation";
-import Dashboard from "./components/Dashboard";
+import {
+  MapView,
+  ControlSidebar,
+  Sidebar,
+  Navigation,
+  Dashboard,
+} from "./components";
 import type { MapLayer } from "./types";
-import "./style.css";
+import "./styles.css";
 
 function App() {
   const [activeTab, setActiveTab] = useState<"map" | "dashboard">("map");
@@ -30,6 +31,7 @@ function App() {
   ]);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [controlSidebarOpen, setControlSidebarOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<{
     properties: Record<string, unknown>;
   } | null>(null);
@@ -59,8 +61,12 @@ function App() {
             <MapView layers={layers} onFeatureClick={handleFeatureClick} />
           </div>
 
-          <LayerControl layers={layers} onToggleLayer={handleToggleLayer} />
-          <Legend />
+          <ControlSidebar
+            layers={layers}
+            onToggleLayer={handleToggleLayer}
+            isOpen={controlSidebarOpen}
+            onToggle={() => setControlSidebarOpen(!controlSidebarOpen)}
+          />
           <Sidebar
             isOpen={sidebarOpen}
             onClose={() => setSidebarOpen(false)}

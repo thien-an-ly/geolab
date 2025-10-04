@@ -1,6 +1,7 @@
-import { DATA_SOURCES } from "../config/dataSources";
+import { DATA_SOURCES } from "../../config/dataSources";
+import "./Legend.css";
 
-export default function Legend() {
+export function Legend() {
   return (
     <div id="leftPanel">
       <div className="legend-section">

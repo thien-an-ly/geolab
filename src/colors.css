@@ -1,0 +1,104 @@
+/**
+ * Kakadu Wetlands Sentinel Color Palette
+ * Derived from logo.svg colors
+ */
+
+:root {
+  /* Typography */
+  --font-display: "Montserrat", "Impact", "Arial Black", sans-serif;
+  --font-body: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+
+  /* Primary Logo Colors */
+  --color-navy: #213468; /* Deep navy blue - primary brand color */
+  --color-cyan: #63c9d6; /* Bright cyan/turquoise - accent color */
+  --color-medium-blue: #2984b7; /* Medium blue - secondary accent */
+
+  /* Extended Palette - Navy Variations */
+  --color-navy-darker: #0f1729; /* Darker navy for deep backgrounds - improved contrast */
+  --color-navy-dark: #151f3a; /* Dark navy for hover states */
+  --color-navy-light: #2d4586; /* Lighter navy for borders */
+  --color-navy-lighter: #3d5a9e; /* Even lighter for subtle backgrounds */
+  --color-navy-subtle: rgba(
+    33,
+    52,
+    104,
+    0.1
+  ); /* Transparent navy for overlays */
+  --color-navy-transparent: rgba(
+    15,
+    23,
+    41,
+    0.95
+  ); /* Darker transparent for overlays */
+
+  /* Extended Palette - Cyan Variations */
+  --color-cyan-dark: #4fb5c2; /* Darker cyan for hover states */
+  --color-cyan-light: #7dd6e2; /* Lighter cyan for highlights */
+  --color-cyan-lighter: #a0e3ed; /* Very light cyan for subtle accents */
+  --color-cyan-subtle: rgba(99, 201, 214, 0.15); /* Transparent cyan */
+  --color-cyan-transparent: rgba(99, 201, 214, 0.85);
+
+  /* Extended Palette - Blue Variations */
+  --color-blue-dark: #206ba0; /* Darker blue */
+  --color-blue-light: #3a9ed0; /* Lighter blue */
+  --color-blue-lighter: #5bb2da; /* Even lighter blue */
+  --color-blue-subtle: rgba(41, 132, 183, 0.15); /* Transparent blue */
+  --color-blue-transparent: rgba(41, 132, 183, 0.85);
+
+  /* Neutral Colors */
+  --color-white: #ffffff;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #cccccc;
+  --color-gray-400: #aaaaaa;
+  --color-gray-500: #888888;
+  --color-gray-600: #666666;
+  --color-gray-700: #444444;
+  --color-gray-800: #2d2d2d;
+  --color-gray-900: #1a1a1a;
+  --color-black: #000000;
+
+  /* Semantic Colors */
+  --color-background-primary: var(--color-navy-darker);
+  --color-background-secondary: var(--color-navy-dark);
+  --color-background-overlay: rgba(15, 23, 41, 0.95);
+  --color-background-panel: rgba(21, 31, 58, 0.92);
+  --color-background-card: rgba(33, 52, 104, 0.3);
+  --color-background-hover: rgba(99, 201, 214, 0.15);
+
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-400);
+  --color-text-accent: var(--color-cyan);
+  --color-text-highlight: var(--color-cyan-light);
+
+  --color-border-primary: var(--color-navy-light);
+  --color-border-secondary: var(--color-medium-blue);
+  --color-border-accent: var(--color-cyan);
+  --color-border-subtle: rgba(99, 201, 214, 0.2);
+
+  --color-shadow-default: rgba(0, 0, 0, 0.5);
+  --color-shadow-strong: rgba(0, 0, 0, 0.7);
+  --color-shadow-subtle: rgba(0, 0, 0, 0.3);
+  --color-shadow-glow: rgba(99, 201, 214, 0.3);
+
+  /* Interactive States */
+  --color-link-default: var(--color-cyan);
+  --color-link-hover: var(--color-cyan-light);
+  --color-link-active: var(--color-medium-blue);
+
+  --color-button-primary: var(--color-medium-blue);
+  --color-button-primary-hover: var(--color-blue-dark);
+  --color-button-secondary: var(--color-navy-light);
+  --color-button-secondary-hover: var(--color-navy);
+
+  --color-active-indicator: var(--color-cyan);
+  --color-active-background: var(--color-cyan-subtle);
+
+  /* Status Colors (keeping some gold for warnings/important info) */
+  --color-success: #4ade80;
+  --color-warning: #ffd700;
+  --color-error: #ff6666;
+  --color-info: var(--color-cyan);
+}

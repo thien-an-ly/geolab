@@ -1,5 +1,6 @@
-import TimeSeriesChart from "./TimeSeriesChart";
-import { mockTimeSeriesData } from "../utils/mockData";
+import { TimeSeriesChart } from "../time-series-chart";
+import { mockTimeSeriesData } from "../../utils/mockData";
+import "./Sidebar.css";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -9,11 +10,7 @@ interface SidebarProps {
   } | null;
 }
 
-export default function Sidebar({
-  isOpen,
-  onClose,
-  featureData,
-}: SidebarProps) {
+export function Sidebar({ isOpen, onClose, featureData }: SidebarProps) {
   if (!isOpen) return null;
 
   return (

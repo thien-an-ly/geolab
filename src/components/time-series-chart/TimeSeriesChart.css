@@ -1,0 +1,74 @@
+/* Time Series Chart Styles */
+.time-series-chart-container {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--color-background-card);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.time-series-chart-title {
+  margin: 0 0 1.5rem 0;
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
+/* Recharts customization using CSS variables */
+.time-series-chart-container .recharts-cartesian-grid-horizontal line,
+.time-series-chart-container .recharts-cartesian-grid-vertical line {
+  stroke: var(--color-border-subtle);
+  stroke-opacity: 0.5;
+}
+
+.time-series-chart-container .recharts-text {
+  fill: var(--color-text-secondary);
+  font-family: var(--font-body);
+}
+
+.time-series-chart-container .recharts-legend-item-text {
+  color: var(--color-text-primary) !important;
+  font-family: var(--font-body);
+}
+
+.time-series-chart-container .recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.time-series-chart-container .recharts-default-tooltip {
+  background-color: var(--color-background-overlay) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.time-series-chart-container .recharts-tooltip-label {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+
+.time-series-chart-container .recharts-tooltip-item {
+  color: var(--color-text-secondary) !important;
+  font-family: var(--font-body);
+}
+
+/* Line colors using app palette */
+.line-ndvi {
+  stroke: var(--color-success);
+}
+
+.line-flood {
+  stroke: var(--color-cyan);
+}
+
+.line-drought {
+  stroke: var(--color-error);
+}
+
+.line-carbon {
+  stroke: var(--color-warning);
+}

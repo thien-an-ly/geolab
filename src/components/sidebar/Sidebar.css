@@ -1,0 +1,60 @@
+/**
+ * Sidebar Component Styles
+ * Feature details sidebar on the right side for displaying clicked feature information
+ */
+
+/* Main Sidebar Container */
+#sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background-color: var(--color-background-panel);
+  color: var(--color-text-primary);
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 200;
+  font-size: 13px;
+  box-sizing: border-box;
+  display: none;
+}
+
+/* Sidebar Headings */
+#sidebar h3 {
+  margin-top: 0;
+  font-size: 16px;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* Sidebar Table */
+#sidebar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#sidebar td {
+  padding: 6px 4px;
+}
+
+#sidebar td:first-child {
+  font-weight: bold;
+  width: 40%;
+}
+
+/* Close Button */
+#closeSidebar {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: var(--color-text-primary);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+#closeSidebar:hover {
+  color: var(--color-error);
+}

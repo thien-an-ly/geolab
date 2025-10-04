@@ -5,15 +5,19 @@ interface NavigationProps {
   onTabChange: (tab: "map" | "dashboard") => void;
 }
 
-export default function Navigation({
-  activeTab,
-  onTabChange,
-}: NavigationProps) {
+export function Navigation({ activeTab, onTabChange }: NavigationProps) {
   return (
     <nav id="navigationBar">
       <div className="nav-container">
         <div className="nav-brand">
-          <h1>🌿 Kakadu Wetlands Sentinel</h1>
+          <div className="brand-header">
+            <img
+              src="/src/assets/logo.svg"
+              alt="GeoLab Logo"
+              className="brand-logo"
+            />
+            <h1>Project GeoLab</h1>
+          </div>
           <p>Ecological indicators and carbon degradation analysis</p>
         </div>
         <div className="nav-tabs">

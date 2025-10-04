@@ -1,0 +1,272 @@
+/**
+ * Control Sidebar Component Styles
+ * Collapsible left sidebar with layer controls and legend
+ */
+
+/* Main Sidebar Container */
+.control-sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 320px;
+  height: calc(100vh - 70px);
+  background-color: var(--color-background-panel);
+  color: var(--color-text-primary);
+  box-shadow: 2px 0 12px var(--color-shadow-strong);
+  z-index: 95;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.control-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Sidebar Header */
+.control-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--color-navy);
+  border-bottom: 2px solid var(--color-border-accent);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.control-sidebar-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-cyan);
+}
+
+.close-sidebar-button {
+  background: transparent;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.close-sidebar-button:hover {
+  color: var(--color-error);
+}
+
+/* Sidebar Content */
+.control-sidebar-content {
+  padding: 15px;
+}
+
+/* Collapsible Sections */
+.control-section {
+  margin-bottom: 15px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  background-color: var(--color-navy-subtle);
+  overflow: hidden;
+}
+
+.control-section-header {
+  margin: 0;
+  padding: 12px 15px;
+  font-size: 15px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-background-card);
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.control-section-header:hover {
+  background-color: var(--color-background-hover);
+}
+
+.control-section-header::after {
+  content: "▼";
+  font-size: 10px;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
+}
+
+.control-section.expanded .control-section-header::after {
+  transform: rotate(180deg);
+}
+
+.control-section-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.control-section.expanded .control-section-content {
+  max-height: 500px;
+  padding: 12px 15px;
+}
+
+/* Layer Checkboxes */
+.layer-checkbox {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.layer-checkbox:hover {
+  color: var(--color-cyan-light);
+}
+
+.layer-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-cyan);
+}
+
+.layer-checkbox span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+/* Legend Section */
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+}
+
+.legend-label {
+  flex: 1;
+}
+
+.legend-about {
+  padding-top: 15px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.legend-about strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-cyan-light);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.legend-about p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* Drawer Button */
+.drawer-button {
+  position: fixed;
+  top: 85px;
+  left: 15px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-background-panel);
+  border: 2px solid var(--color-border-accent);
+  border-radius: 8px;
+  color: var(--color-cyan);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 90;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--color-shadow-default);
+}
+
+.drawer-button:hover {
+  background-color: var(--color-background-hover);
+  border-color: var(--color-cyan);
+  box-shadow: 0 4px 12px var(--color-shadow-glow);
+  transform: scale(1.05);
+}
+
+.drawer-button.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-20px);
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 94;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar Styling */
+.control-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.control-sidebar::-webkit-scrollbar-track {
+  background: var(--color-navy-darker);
+}
+
+.control-sidebar::-webkit-scrollbar-thumb {
+  background: var(--color-navy-light);
+  border-radius: 4px;
+}
+
+.control-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-medium-blue);
+}

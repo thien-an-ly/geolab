@@ -1,7 +1,8 @@
-import TimeSeriesChart from "./TimeSeriesChart";
-import { mockTimeSeriesData } from "../utils/mockData";
+import { TimeSeriesChart } from "../time-series-chart";
+import { mockTimeSeriesData } from "../../utils/mockData";
+import "./Dashboard.css";
 
-export default function Dashboard() {
+export function Dashboard() {
   return (
     <div id="dashboard">
       <div className="dashboard-content">
