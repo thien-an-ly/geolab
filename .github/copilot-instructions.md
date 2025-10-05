@@ -1,8 +1,8 @@
-# Kakadu Wetlands Sentinel - Copilot Instructions
+# Project GeoLab - Copilot Instructions
 
 ## Project Overview
 
-Kakadu Wetlands Sentinel is a static web-based visualization tool for classifying ecological indicators and exploring their correlation with carbon degradation in Australia's Kakadu National Park.
+Project GeoLab is a static web-based visualization tool for classifying ecological indicators and exploring their correlation with carbon degradation in Australia's Kakadu National Park.
 
 ## Tech Stack
 

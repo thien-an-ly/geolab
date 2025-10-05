@@ -56,16 +56,15 @@ function LayerInitializer({
 
 export function MapView({ layers, currentYear, onFeatureClick }: MapViewProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  console.log(import.meta.env.VITE_MAPBOX_TOKEN);
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <Map
         id="main-map"
         initialViewState={{
-          longitude: 132.5,
-          latitude: -12.5,
-          zoom: 8,
+          longitude: 132.264616,
+          latitude: -12.278275,
+          zoom: 11,
         }}
         onLoad={() => {
           // console.log("✓ Map loaded successfully!");

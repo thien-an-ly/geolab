@@ -1,4 +1,4 @@
-# 🌿 Kakadu Wetlands Sentinel
+# 🌿 Project GeoLab
 
 A static web-based visualization tool for classifying ecological indicators and exploring their correlation with carbon degradation in Australia's Kakadu National Park.
 
@@ -9,7 +9,7 @@ A static web-based visualization tool for classifying ecological indicators and 
 
 ## 🎯 Overview
 
-Kakadu Wetlands Sentinel simplifies complex Earth observation data into interpretable visuals that support early-stage environmental analysis. By highlighting potential links between wetland dynamics and carbon loss, the project encourages further exploration into climate-sensitive ecosystems.
+Project GeoLab simplifies complex Earth observation data into interpretable visuals that support early-stage environmental analysis. By highlighting potential links between wetland dynamics and carbon loss, the project encourages further exploration into climate-sensitive ecosystems.
 
 Built with modern React patterns, custom hooks architecture, and comprehensive TypeScript type safety, this project demonstrates best practices for geospatial web applications.
 
@@ -140,7 +140,7 @@ GeoLab/
 - **Charts**: Recharts 2.15
 - **Data Format**: GeoJSON for geospatial data
 - **Styling**: CSS Modules with design tokens
-- **Data Sources**: Landsat (NDVI), Sentinel-1 (SAR), Sentinel-5P (Carbon)
+- **Data Sources**: Landsat (NDVI), Sentinel-1 (SAR)
 
 ## 🎨 Development Principles
 

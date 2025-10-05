@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide explains how geospatial data flows through the Kakadu Wetlands Sentinel application. It's designed for users who want to understand the data structure, add new datasets, or modify existing visualizations.
+This guide explains how geospatial data flows through the Project GeoLab application. It's designed for users who want to understand the data structure, add new datasets, or modify existing visualizations.
 
 ---
 

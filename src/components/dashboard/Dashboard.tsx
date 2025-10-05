@@ -14,6 +14,7 @@ export function Dashboard() {
       try {
         const statsData = await loadStatsData();
         setChartData(statsData as TimeSeriesData[]);
+        //eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         // console.error("Failed to load stats data:", error);
       } finally {
@@ -47,8 +48,8 @@ export function Dashboard() {
         <div className="dashboard-section">
           <h2>About This Tool</h2>
           <p>
-            Kakadu Wetlands Sentinel is a static web-based visualization tool
-            for monitoring ecological indicators and exploring their correlation
+            Project GeoLab is a static web-based visualization tool for
+            monitoring ecological indicators and exploring their correlation
             with environmental change in Australia's Kakadu National Park. This
             tool provides interactive access to multi-temporal satellite data
             spanning 2014-2024.
@@ -57,24 +58,23 @@ export function Dashboard() {
           <h3>Key Features</h3>
           <ul>
             <li>
-              🌲 <strong>Mangrove Distribution & Change</strong> -
-              Year-over-year mangrove extent tracking with gain/loss analysis
-              (2014-2024)
+              <strong>Mangrove Distribution & Change</strong> - Year-over-year
+              mangrove extent tracking with gain/loss analysis (2014-2024)
             </li>
             <li>
-              🩺 <strong>Vegetation Health Monitoring</strong> - NDVI time
-              series for mangrove-specific zones
+              <strong>Vegetation Health Monitoring</strong> - NDVI time series
+              for mangrove-specific zones
             </li>
             <li>
-              💧 <strong>Flood Extent Mapping</strong> - Annual flood area
+              <strong>Flood Extent Mapping</strong> - Annual flood area
               measurements derived from SAR imagery (2016-2024)
             </li>
             <li>
-              💨 <strong>Carbon Dynamics</strong> - Spatial visualization of
-              carbon gain, loss, and stock measurements
+              <strong>Carbon Dynamics</strong> - Spatial visualization of carbon
+              gain, loss, and stock measurements
             </li>
             <li>
-              📈 <strong>Time Series Analysis</strong> - Interactive charts
+              <strong>Time Series Analysis</strong> - Interactive charts
               combining NDVI trends with area measurements
             </li>
           </ul>

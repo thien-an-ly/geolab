@@ -1,4 +1,4 @@
-// Sample data for Kakadu Wetlands Sentinel
+// Sample data for Project GeoLab
 import type { TimeSeriesData } from "../types";
 
 export const mockTimeSeriesData: TimeSeriesData[] = [

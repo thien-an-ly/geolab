@@ -6,6 +6,7 @@ import {
   Dashboard,
   TimeSlider,
   BottomSidebar,
+  Legend,
 } from "./components";
 import {} from "./components/time-slider";
 import type { MapLayer, FeatureClickData } from "./types";
@@ -31,10 +32,10 @@ function App() {
     );
   };
 
-  const handleFeatureClick = (data: FeatureClickData) => {
-    // Add current year to the feature data
-    setSelectedFeature(data);
-    // console.log("Feature clicked:", data.properties);
+  const handleFeatureClick = (feature: FeatureClickData) => {
+    setSelectedFeature(feature);
+    // console.log("Feature clicked:", feature);
+    // console.log("Feature clicked:", selectedFeature);
 
     // Close time slider if open
     if (timeSliderOpen) {
@@ -67,6 +68,7 @@ function App() {
               currentYear={currentYear}
               onFeatureClick={handleFeatureClick}
             />
+            <Legend layers={layers} />
             <TimeSlider
               isOpen={timeSliderOpen}
               onToggle={() => setTimeSliderOpen(!timeSliderOpen)}

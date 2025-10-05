@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide documents the component architecture conventions used in the Kakadu Wetlands Sentinel project. It provides clear instructions for creating new components that follow the established patterns.
+This guide documents the component architecture conventions used in the Project GeoLab project. It provides clear instructions for creating new components that follow the established patterns.
 
 ---
 

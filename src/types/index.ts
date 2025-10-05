@@ -1,4 +1,4 @@
-// Type definitions for Kakadu Wetlands Sentinel
+// Type definitions for Project GeoLab
 
 export interface TimeSeriesData {
   date: string;
