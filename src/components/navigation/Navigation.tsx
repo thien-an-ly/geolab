@@ -10,7 +10,11 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
     <nav id="navigationBar">
       <div className="nav-brand">
         <div className="brand-header">
-          <img src="/logo.svg" alt="GeoLab Logo" className="brand-logo" />
+          <img
+            src={`${import.meta.env.BASE_URL}logo.svg`}
+            alt="GeoLab Logo"
+            className="brand-logo"
+          />
           <h1>Project GeoLab</h1>
         </div>
         <p>Ecological indicators and carbon degradation analysis</p>
