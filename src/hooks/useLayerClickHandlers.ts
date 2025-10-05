@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { Map as MapboxMap } from "mapbox-gl";
-import { DATA_SOURCES } from "../config/dataSources";
+import { DATA_SOURCES_CONFIG } from "../config/dataSources";
 
 interface UseLayerClickHandlersOptions {
   map: MapboxMap; // Non-null: guaranteed by dataLoaded flag
@@ -35,7 +35,7 @@ export function useLayerClickHandlers({
     const cleanupFunctions = cleanupFunctionsRef.current;
 
     // Setup handlers for all layers that exist
-    DATA_SOURCES.forEach((config) => {
+    DATA_SOURCES_CONFIG.forEach((config) => {
       const fillLayerId = `${config.id}-fill`;
 
       // Only setup if layer exists and we haven't already setup handlers

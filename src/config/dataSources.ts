@@ -19,7 +19,7 @@ export interface DataSourceConfig {
   };
 }
 
-export const DATA_SOURCES: DataSourceConfig[] = [
+export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
   {
     id: "mangrove-gain",
     name: "Mangrove Gain",
@@ -88,6 +88,23 @@ export const DATA_SOURCES: DataSourceConfig[] = [
       source: "Sentinel-1 SAR analysis",
     },
   },
+  {
+    id: "mangrove-change",
+    name: "Mangrove Change",
+    layerType: "mangrove-change",
+    dataUrl: "/data/mangrove-change/Mangrove_Change_2023_2024.json",
+    style: {
+      fillColor: "#ffaa00",
+      fillOpacity: 0.6,
+      lineColor: "#ff8800",
+      lineWidth: 1.5,
+    },
+    metadata: {
+      description: "Year-over-year mangrove gain and loss analysis",
+      year: "2023-2024",
+      source: "Landsat time-series analysis",
+    },
+  },
   // Add more data sources here as needed
   // Example for future mangrove data:
   // {
@@ -103,43 +120,3 @@ export const DATA_SOURCES: DataSourceConfig[] = [
   //   },
   // },
 ];
-
-// Helper to get data source by layer type
-export function getDataSourceByLayerType(
-  layerType: string
-): DataSourceConfig | undefined {
-  return DATA_SOURCES.find((source) => source.layerType === layerType);
-}
-
-// Helper to get all data source IDs
-export function getAllDataSourceIds(): string[] {
-  return DATA_SOURCES.map((source) => source.id);
-}
-
-// Helper to get data URL for a specific year and layer type
-export function getDataUrlForYear(
-  layerType: MapLayerType,
-  year: number
-): string {
-  // For flood data, we have yearly datasets
-  if (layerType === "flood") {
-    return `/data/flood/Kakadu_FloodOnly_${year}.geojson`;
-  }
-
-  // For mangrove data, we have yearly datasets
-  if (layerType === "mangrove") {
-    return `/data/mangrove/M_${year}.geojson`;
-  }
-
-  // For other layer types, return the default URL
-  const source = DATA_SOURCES.find((s) => s.layerType === layerType);
-  return source?.dataUrl || "";
-}
-
-// Helper to update data source URL for a given year
-export function updateDataSourcesForYear(year: number): DataSourceConfig[] {
-  return DATA_SOURCES.map((source) => ({
-    ...source,
-    dataUrl: getDataUrlForYear(source.layerType, year),
-  }));
-}

@@ -1,4 +1,4 @@
-import { DATA_SOURCES } from "../../config/dataSources";
+import { DATA_SOURCES_CONFIG } from "../../config/dataSources";
 import "./Legend.css";
 
 export function Legend() {
@@ -6,7 +6,7 @@ export function Legend() {
     <div id="leftPanel">
       <div className="legend-section">
         <strong>Vegetation Layers</strong>
-        {DATA_SOURCES.map((source) => (
+        {DATA_SOURCES_CONFIG.map((source) => (
           <label key={source.id}>
             <span
               className="legend-color"

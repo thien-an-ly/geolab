@@ -1,6 +1,7 @@
 import type { Map } from "mapbox-gl";
 import type { DataSourceConfig } from "../config/dataSources";
 import type { MapLayer } from "../types";
+import { getLayerStyleStrategy } from "./map/mapStyleStrategies";
 
 /**
  * Fetch GeoJSON data from a URL
@@ -59,6 +60,9 @@ export function addMapLayers(
     return false;
   }
 
+  // Get paint properties based on layer type strategy
+  const styleStrategy = getLayerStyleStrategy(config);
+
   // Add fill layer
   map.addLayer({
     id: fillLayerId,
@@ -68,7 +72,7 @@ export function addMapLayers(
       visibility: visibility,
     },
     paint: {
-      "fill-color": config.style.fillColor,
+      "fill-color": styleStrategy.fillColor,
       "fill-opacity": config.style.fillOpacity,
     },
   });
@@ -82,7 +86,7 @@ export function addMapLayers(
       visibility: visibility,
     },
     paint: {
-      "line-color": config.style.lineColor,
+      "line-color": styleStrategy.lineColor,
       "line-width": config.style.lineWidth,
     },
   });

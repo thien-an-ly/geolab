@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { MapLayer } from "../../types";
-import { DATA_SOURCES } from "../../config/dataSources";
+import { DATA_SOURCES_CONFIG } from "../../config/dataSources";
 import "./ControlSidebar.css";
 import { getLayerIcon } from "../../utils/layerHelpers";
 
@@ -146,7 +146,7 @@ export function ControlSidebar({
             </h3>
             <div className="control-section-content">
               <div className="legend-items">
-                {DATA_SOURCES.map((source) => (
+                {DATA_SOURCES_CONFIG.map((source) => (
                   <div key={source.id} className="legend-item">
                     <span
                       className="legend-color"

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import type { Map } from "mapbox-gl";
 import type { MapLayer } from "../types";
-import { DATA_SOURCES } from "../config/dataSources";
+import { DATA_SOURCES_CONFIG } from "../config/dataSources";
 import { updateLayerVisibility } from "../utils/mapLayerUtils";
 
 interface UseLayerVisibilityOptions {
@@ -26,7 +26,7 @@ export function useLayerVisibility({
     // (guaranteed by useMapLayers' initialization logic)
     if (!initialized) return;
 
-    DATA_SOURCES.forEach((config) => {
+    DATA_SOURCES_CONFIG.forEach((config) => {
       const layer = layers.find((l) => l.type === config.layerType);
       const visibility = layer?.visible ? "visible" : "none";
       updateLayerVisibility(map, config.id, visibility);

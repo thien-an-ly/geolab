@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { Map } from "mapbox-gl";
 import type { MapLayer } from "../types";
-import { updateDataSourcesForYear } from "../config/dataSources";
+import { DATA_SOURCES_CONFIG } from "../config/dataSources";
+import { updateDataSourcesForYear } from "../utils/dataSourceUtils";
 import {
   fetchGeoJSONData,
   addMapSource,
@@ -42,7 +43,10 @@ export function useLayerDataUpdate({
     if (previousYear.current !== null && previousYear.current === currentYear)
       return;
 
-    const DATA_SOURCES = updateDataSourcesForYear(currentYear);
+    const updatedDataSources = updateDataSourcesForYear(
+      DATA_SOURCES_CONFIG,
+      currentYear
+    );
 
     console.log(`Updating map data for year ${currentYear}...`);
 
@@ -50,7 +54,7 @@ export function useLayerDataUpdate({
     setDataLoaded(false);
 
     const updateDataSources = async () => {
-      for (const config of DATA_SOURCES) {
+      for (const config of updatedDataSources) {
         const sourceId = `${config.id}-source`;
         const fillLayerId = `${config.id}-fill`;
         const lineLayerId = `${config.id}-line`;
