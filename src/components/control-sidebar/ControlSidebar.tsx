@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MapLayer } from "../../types";
 import "./ControlSidebar.css";
 import { getLayerIcon, getLegendColor } from "../../utils/layerHelpers";
+import { ENVIRONMENTAL_LAYERS, VEGETATION_LAYERS } from "../../config/layers";
 
 interface ControlSidebarProps {
   layers: MapLayer[];
@@ -32,10 +33,10 @@ export function ControlSidebar({
   };
 
   const vegetationLayers = layers.filter((l) =>
-    ["gain", "loss", "mangrove", "forest"].includes(l.type)
+    VEGETATION_LAYERS.includes(l.type)
   );
   const environmentalLayers = layers.filter((l) =>
-    ["flood", "carbon"].includes(l.type)
+    ENVIRONMENTAL_LAYERS.includes(l.type)
   );
 
   return (

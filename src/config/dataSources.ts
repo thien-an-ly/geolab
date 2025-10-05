@@ -66,6 +66,47 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
       source: "Sentinel-1 SAR analysis",
     },
   },
+  {
+    id: "carbon",
+    name: "Estimated Carbon (TCO2)",
+    layerType: "carbon",
+    dataUrl: "/data/carbon/Vecotirsed_CarbonStock2014_tco2.json",
+    style: null,
+    metadata: {
+      description: "Above ground biomass * IPCC default value",
+      year: "2014",
+      source:
+        "NASA Earth Data Global Mangrove distribution (above ground biomass & canopy height)",
+    },
+  },
+  {
+    id: "carbon-gain",
+    name: "Estimated Carbon gain (TCO2)",
+    layerType: "carbon-gain",
+    dataUrl: "/data/carbon-gain/CarbonGain_1424.geojson",
+    style: null,
+    metadata: {
+      description:
+        "LANDSAT-derived mangrove gain map * average above ground biomass value",
+      year: "2014-2024",
+      source:
+        "NASA Earth Data Global Mangrove distribution (above ground biomass & canopy height) + LANDSAT",
+    },
+  },
+  {
+    id: "carbon-loss",
+    name: "Estimated Carbon loss (TCO2)",
+    layerType: "carbon-loss",
+    dataUrl: "/data/carbon-loss/CarbonLoss1424.geojson",
+    style: null,
+    metadata: {
+      description:
+        "LANDSAT-derived mangrove loss map * above ground biomass value",
+      year: "2014-2024",
+      source:
+        "NASA Earth Data Global Mangrove distribution (above ground biomass & canopy height)",
+    },
+  },
   // Add more data sources here as needed
   // Example for future mangrove data:
   // {

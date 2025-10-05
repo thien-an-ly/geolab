@@ -14,7 +14,11 @@ export function getLayerIcon(type: MapLayerType): string {
     case "flood":
       return "💧";
     case "carbon":
-      return "⚠️";
+      return "💎";
+    case "carbon-gain":
+      return "📈";
+    case "carbon-loss":
+      return "📉";
     default:
       return "📍";
   }
@@ -34,7 +38,11 @@ export function getLegendColor(type: MapLayerType): string {
     case "flood":
       return "#00bfff"; // Deep sky blue
     case "carbon":
-      return "#ff6600"; // Orange
+      return "#FFD700"; // Gold
+    case "carbon-gain":
+      return "#7FFF00"; // Chartreuse
+    case "carbon-loss":
+      return "#FF1493"; // Deep pink
     default:
       return "#808080"; // Gray
   }

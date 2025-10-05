@@ -1,14 +1,5 @@
 // Type definitions for Kakadu Wetlands Sentinel
 
-export interface EcologicalIndicator {
-  id: string;
-  name: string;
-  type: "mangrove" | "degraded-forest" | "hydrological-shift";
-  ndvi: number;
-  timestamp: string;
-  coordinates: [number, number];
-}
-
 export interface TimeSeriesData {
   date: string;
   ndvi: number;
@@ -30,16 +21,11 @@ export type MapLayerType =
   | "mangrove"
   | "mangrove-change"
   | "flood"
-  | "carbon";
+  | "carbon"
+  | "carbon-gain"
+  | "carbon-loss";
 
 export interface FeatureClickData {
   properties: Record<string, unknown>;
   layerType: MapLayerType;
-}
-
-export interface KakaduRegion {
-  name: string;
-  bounds: [[number, number], [number, number]];
-  center: [number, number];
-  zoom: number;
 }

@@ -1,5 +1,5 @@
 // Default UI layer configuration
-import type { MapLayer } from "../types";
+import type { MapLayer, MapLayerType } from "../types";
 
 /**
  * Default layers configuration for the application.
@@ -10,33 +10,54 @@ import type { MapLayer } from "../types";
  */
 export const LAYERS: MapLayer[] = [
   {
+    id: "mangrove",
+    name: "Mangrove Areas (Ha)",
+    visible: false,
+    type: "mangrove",
+  },
+  {
     id: "gain",
-    name: "Mangrove Gain (2014-2024)",
+    name: "Mangrove Gain (Ha)",
     visible: false,
     type: "gain",
   },
   {
     id: "loss",
-    name: "Mangrove Loss (2014-2024)",
+    name: "Mangrove Loss (Ha)",
     visible: false,
     type: "loss",
   },
   {
-    id: "mangrove",
-    name: "Mangrove Zones",
-    visible: false,
-    type: "mangrove",
-  },
-  {
     id: "flood",
-    name: "Flood Inundation",
+    name: "Flood Inundation (Ha)",
     visible: false,
     type: "flood",
   },
   {
     id: "carbon",
-    name: "Carbon Loss Areas",
+    name: "Carbon (TCO2)",
     visible: false,
     type: "carbon",
   },
+  {
+    id: "carbon-gain",
+    name: "Carbon Gain (TCO2)",
+    visible: false,
+    type: "carbon-gain",
+  },
+  {
+    id: "carbon-loss",
+    name: "Carbon Loss (TCO2)",
+    visible: false,
+    type: "carbon-loss",
+  },
 ];
+
+export const ENVIRONMENTAL_LAYERS: MapLayerType[] = [
+  "flood",
+  "carbon",
+  "carbon-gain",
+  "carbon-loss",
+];
+
+export const VEGETATION_LAYERS: MapLayerType[] = ["gain", "loss", "mangrove"];

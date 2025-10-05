@@ -39,10 +39,22 @@
   color: #000000;
 }
 
-/* Carbon Loss - Orange (#ff6600) */
+/* Carbon - Gold (#FFD700) */
 .feature-type-badge-carbon {
-  background: #ff6600;
+  background: #ffd700;
   color: #000000;
+}
+
+/* Carbon Gain - Chartreuse (#7FFF00) */
+.feature-type-badge-carbon-gain {
+  background: #7fff00;
+  color: #000000;
+}
+
+/* Carbon Loss - Deep Pink (#FF1493) */
+.feature-type-badge-carbon-loss {
+  background: #ff1493;
+  color: #ffffff;
 }
 
 .feature-properties {

@@ -41,6 +41,8 @@ export function isKeyExcluded(key: string): boolean {
  */
 export function formatKey(key: string): string {
   switch (key) {
+    case "Ha":
+    case "ha":
     case "area_ha":
     case "Area":
       return "Area (Ha)";
@@ -51,6 +53,7 @@ export function formatKey(key: string): string {
   return key
     .replace(/([A-Z])/g, " $1") // Add space before capitals
     .replace(/_/g, " ") // Replace underscores with spaces
+    .replace(/-/g, " ") // Replace dashes with spaces
     .replace(/\b\w/g, (char) => char.toUpperCase()) // Capitalize first letter of each word
     .trim();
 }

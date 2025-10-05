@@ -48,13 +48,75 @@ const mangroveChangeStrategy = (): LayerStyleStrategy => ({
 });
 
 /**
+ * Carbon heatmap gradient strategy - interpolates gold color based on gridcode
+ */
+const carbonStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
+  fillColor: [
+    "interpolate",
+    ["linear"],
+    ["get", "gridcode"],
+    0,
+    "rgba(255, 215, 0, 0.1)", // Gold with 10% opacity at min
+    50,
+    "rgba(255, 215, 0, 0.5)", // Gold with 50% opacity at mid
+    100,
+    "rgba(255, 215, 0, 1)", // Gold with 100% opacity at max
+  ],
+  lineColor: config.style?.lineColor ?? "#FFD700",
+  fillOpacity: 1, // Use 1 since opacity is in the color
+  lineWidth: 0.5,
+});
+
+/**
+ * Carbon gain heatmap gradient strategy - interpolates chartreuse color
+ */
+const carbonGainStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
+  fillColor: [
+    "interpolate",
+    ["linear"],
+    ["get", "gridcode"],
+    0,
+    "rgba(127, 255, 0, 0.1)", // Chartreuse with 10% opacity at min
+    50,
+    "rgba(127, 255, 0, 0.5)", // Chartreuse with 50% opacity at mid
+    100,
+    "rgba(127, 255, 0, 1)", // Chartreuse with 100% opacity at max
+  ],
+  lineColor: config.style?.lineColor ?? "#7FFF00",
+  fillOpacity: 1, // Use 1 since opacity is in the color
+  lineWidth: 0.5,
+});
+
+/**
+ * Carbon loss heatmap gradient strategy - interpolates deep pink color
+ */
+const carbonLossStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
+  fillColor: [
+    "interpolate",
+    ["linear"],
+    ["get", "gridcode"],
+    0,
+    "rgba(255, 20, 147, 0.1)", // Deep pink with 10% opacity at min
+    50,
+    "rgba(255, 20, 147, 0.5)", // Deep pink with 50% opacity at mid
+    100,
+    "rgba(255, 20, 147, 1)", // Deep pink with 100% opacity at max
+  ],
+  lineColor: config.style?.lineColor ?? "#FF1493",
+  fillOpacity: 1, // Use 1 since opacity is in the color
+  lineWidth: 0.5,
+});
+
+/**
  * Layer styling strategies by layer type
  */
 const LAYER_STYLE_STRATEGIES: Partial<
   Record<MapLayerType, (config: DataSourceConfig) => LayerStyleStrategy>
 > = {
   "mangrove-change": mangroveChangeStrategy,
-  // Add more custom strategies here as needed
+  carbon: carbonStrategy,
+  "carbon-gain": carbonGainStrategy,
+  "carbon-loss": carbonLossStrategy,
 };
 
 /**
