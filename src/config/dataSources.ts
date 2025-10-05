@@ -11,7 +11,7 @@ export interface DataSourceConfig {
     fillOpacity: number;
     lineColor: string;
     lineWidth: number;
-  };
+  } | null;
   metadata?: {
     description?: string;
     year?: string;
@@ -21,37 +21,15 @@ export interface DataSourceConfig {
 
 export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
   {
-    id: "mangrove-gain",
-    name: "Mangrove Gain",
-    layerType: "gain",
-    dataUrl: "/data/TestGain.geojson",
-    style: {
-      fillColor: "#00ff00",
-      fillOpacity: 0.4,
-      lineColor: "#00aa00",
-      lineWidth: 2,
-    },
+    id: "mangrove-change",
+    name: "Mangrove Change",
+    layerType: "mangrove-change", // Shared source for gain and loss UI layers
+    dataUrl: "/data/mangrove-change/Mangrove_Change_2023_2024.json",
+    style: null, // defined by strategy
     metadata: {
-      description: "Areas showing increased mangrove coverage",
-      year: "2020-2024",
-      source: "Landsat analysis",
-    },
-  },
-  {
-    id: "mangrove-loss",
-    name: "Mangrove Loss",
-    layerType: "loss",
-    dataUrl: "/data/TestLoss.geojson",
-    style: {
-      fillColor: "#ff0000",
-      fillOpacity: 0.4,
-      lineColor: "#aa0000",
-      lineWidth: 2,
-    },
-    metadata: {
-      description: "Areas with mangrove degradation",
-      year: "2025",
-      source: "Landsat analysis",
+      description: "Areas showing mangrove coverage changes",
+      year: "2014-2024",
+      source: "Landsat time-series analysis",
     },
   },
   {
@@ -84,25 +62,8 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     },
     metadata: {
       description: "Flood/drought signals from Sentinel-1 SAR",
-      year: "2024",
+      year: "2016-2024",
       source: "Sentinel-1 SAR analysis",
-    },
-  },
-  {
-    id: "mangrove-change",
-    name: "Mangrove Change",
-    layerType: "mangrove-change",
-    dataUrl: "/data/mangrove-change/Mangrove_Change_2023_2024.json",
-    style: {
-      fillColor: "#ffaa00",
-      fillOpacity: 0.6,
-      lineColor: "#ff8800",
-      lineWidth: 1.5,
-    },
-    metadata: {
-      description: "Year-over-year mangrove gain and loss analysis",
-      year: "2023-2024",
-      source: "Landsat time-series analysis",
     },
   },
   // Add more data sources here as needed

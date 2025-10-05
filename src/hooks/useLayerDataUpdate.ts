@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import type { Map } from "mapbox-gl";
-import type { MapLayer } from "../types";
 import { DATA_SOURCES_CONFIG } from "../config/dataSources";
 import { updateDataSourcesForYear } from "../utils/dataSourceUtils";
 import {
@@ -9,14 +8,12 @@ import {
   addMapLayers,
   removeMapLayers,
   updateSourceData,
-  getLayerVisibility,
 } from "../utils/mapLayerUtils";
 
 interface UseLayerDataUpdateOptions {
   map: Map; // Non-null: guaranteed by initialized flag
   initialized: boolean;
   currentYear: number;
-  layers: MapLayer[];
 }
 
 /**
@@ -25,11 +22,10 @@ interface UseLayerDataUpdateOptions {
  * Note: map is non-null because initialized can only be true if map is valid
  * (enforced by useMapLayers which only sets initialized after using map).
  */
-export function useLayerDataUpdate({
+export function useDataSourceUpdate({
   map,
   initialized,
   currentYear,
-  layers,
 }: UseLayerDataUpdateOptions) {
   const previousYear = useRef<number | null>(null);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -81,8 +77,10 @@ export function useLayerDataUpdate({
             // If source doesn't exist, create it (initial load or re-add after removal)
             addMapSource(map, sourceId, data);
 
-            // Get visibility state from layers prop
-            const visibility = getLayerVisibility(layers, config.layerType);
+            // For shared data sources (e.g., mangrove-change serves both gain and loss),
+            // check if any related layer types are visible
+            // Default to hidden; visibility will be managed by useLayerVisibility
+            const visibility = "none";
 
             // Add layers
             if (!map.getLayer(fillLayerId) && !map.getLayer(lineLayerId)) {

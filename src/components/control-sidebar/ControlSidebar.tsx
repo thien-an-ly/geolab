@@ -1,8 +1,7 @@
 import { useState } from "react";
 import type { MapLayer } from "../../types";
-import { DATA_SOURCES_CONFIG } from "../../config/dataSources";
 import "./ControlSidebar.css";
-import { getLayerIcon } from "../../utils/layerHelpers";
+import { getLayerIcon, getLegendColor } from "../../utils/layerHelpers";
 
 interface ControlSidebarProps {
   layers: MapLayer[];
@@ -146,13 +145,13 @@ export function ControlSidebar({
             </h3>
             <div className="control-section-content">
               <div className="legend-items">
-                {DATA_SOURCES_CONFIG.map((source) => (
-                  <div key={source.id} className="legend-item">
+                {layers.map((layer) => (
+                  <div key={layer.id} className="legend-item">
                     <span
                       className="legend-color"
-                      style={{ backgroundColor: source.style.fillColor }}
+                      style={{ backgroundColor: getLegendColor(layer.type) }}
                     ></span>
-                    <span className="legend-label">{source.name}</span>
+                    <span className="legend-label">{layer.name}</span>
                   </div>
                 ))}
               </div>

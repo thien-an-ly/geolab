@@ -7,14 +7,18 @@ import type { MapLayerType } from "../../types";
 export interface LayerStyleStrategy {
   fillColor: string | mapboxgl.ExpressionSpecification;
   lineColor: string | mapboxgl.ExpressionSpecification;
+  fillOpacity: number;
+  lineWidth: number;
 }
 
 /**
- * Default styling strategy - uses config values
+ * Default styling strategy - uses config values or defaults
  */
 const defaultStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
-  fillColor: config.style.fillColor,
-  lineColor: config.style.lineColor,
+  fillColor: config.style?.fillColor ?? "#808080",
+  lineColor: config.style?.lineColor ?? "#606060",
+  fillOpacity: config.style?.fillOpacity ?? 0.5,
+  lineWidth: config.style?.lineWidth ?? 1.5,
 });
 
 /**
@@ -23,7 +27,7 @@ const defaultStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
 const mangroveChangeStrategy = (): LayerStyleStrategy => ({
   fillColor: [
     "match",
-    ["get", "change_type"],
+    ["get", "Change_Type"],
     "Gain",
     "#00ff00", // Green for gain
     "Loss",
@@ -32,13 +36,15 @@ const mangroveChangeStrategy = (): LayerStyleStrategy => ({
   ],
   lineColor: [
     "match",
-    ["get", "change_type"],
+    ["get", "Change_Type"],
     "Gain",
     "#00aa00", // Dark green for gain
     "Loss",
     "#aa0000", // Dark red for loss
     "#606060", // Dark gray for no change
   ],
+  fillOpacity: 0.6,
+  lineWidth: 1.5,
 });
 
 /**

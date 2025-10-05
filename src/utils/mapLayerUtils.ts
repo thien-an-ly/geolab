@@ -73,7 +73,7 @@ export function addMapLayers(
     },
     paint: {
       "fill-color": styleStrategy.fillColor,
-      "fill-opacity": config.style.fillOpacity,
+      "fill-opacity": styleStrategy.fillOpacity,
     },
   });
 
@@ -87,7 +87,7 @@ export function addMapLayers(
     },
     paint: {
       "line-color": styleStrategy.lineColor,
-      "line-width": config.style.lineWidth,
+      "line-width": styleStrategy.lineWidth,
     },
   });
 
@@ -129,6 +129,78 @@ export function updateLayerVisibility(
   }
   if (map.getLayer(lineLayerId)) {
     map.setLayoutProperty(lineLayerId, "visibility", visibility);
+  }
+}
+
+/**
+ * Apply a filter to map layers to show only features matching a property value.
+ *
+ * This function applies Mapbox GL JS filter expressions to both fill and line layers.
+ * The filter behavior changes based on the type of `propertyValue`:
+ *
+ * **Single value (string | number | boolean | null):**
+ * - Creates an equality filter: `["==", ["get", propertyName], propertyValue]`
+ * - Shows only features where the property exactly matches the value
+ * - Example: `applyLayerFilter(map, "mangrove-change", "change_type", "Gain")`
+ *   → Shows only features with `change_type === "Gain"`
+ *
+ * **Array of values:**
+ * - Creates an "in" filter: `["in", ["get", propertyName], ["literal", propertyValue]]`
+ * - Shows features where the property matches ANY value in the array
+ * - Example: `applyLayerFilter(map, "mangrove-change", "change_type", ["Gain", "Loss"])`
+ *   → Shows features with `change_type === "Gain" OR change_type === "Loss"`
+ *
+ * @param map - The Mapbox map instance
+ * @param layerId - The base layer ID (without "-fill" or "-line" suffix)
+ * @param propertyName - The GeoJSON feature property name to filter by
+ * @param propertyValue - Single value for equality filter, or array for "in" filter
+ *
+ * @example
+ * // Single value - show only gain
+ * applyLayerFilter(map, "mangrove-change", "change_type", "Gain");
+ *
+ * @example
+ * // Multiple values - show both gain and loss
+ * applyLayerFilter(map, "mangrove-change", "change_type", ["Gain", "Loss"]);
+ */
+export function applyLayerFilter(
+  map: Map,
+  layerId: string,
+  propertyName: string,
+  propertyValue:
+    | string
+    | number
+    | boolean
+    | null
+    | Array<string | number | boolean>
+): void {
+  const fillLayerId = `${layerId}-fill`;
+  const lineLayerId = `${layerId}-line`;
+
+  const filter: mapboxgl.ExpressionSpecification = Array.isArray(propertyValue)
+    ? ["in", ["get", propertyName], ["literal", propertyValue]]
+    : ["==", ["get", propertyName], propertyValue];
+
+  if (map.getLayer(fillLayerId)) {
+    map.setFilter(fillLayerId, filter);
+  }
+  if (map.getLayer(lineLayerId)) {
+    map.setFilter(lineLayerId, filter);
+  }
+}
+
+/**
+ * Clear filter from map layers to show all features
+ */
+export function clearLayerFilter(map: Map, layerId: string): void {
+  const fillLayerId = `${layerId}-fill`;
+  const lineLayerId = `${layerId}-line`;
+
+  if (map.getLayer(fillLayerId)) {
+    map.setFilter(fillLayerId, null);
+  }
+  if (map.getLayer(lineLayerId)) {
+    map.setFilter(lineLayerId, null);
   }
 }
 

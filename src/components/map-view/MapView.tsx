@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import type { MapLayer } from "../../types";
 import {
   useInitMap,
-  useLayerDataUpdate,
+  useDataSourceUpdate,
   useLayerVisibility,
   useLayerClickHandlers,
 } from "../../hooks";
@@ -30,17 +30,17 @@ function LayerInitializer({
   const { map, initialized } = useInitMap();
 
   // Update layer data when year changes (handles initial load too)
-  const { dataLoaded } = useLayerDataUpdate({
+  const { dataLoaded } = useDataSourceUpdate({
     map,
     initialized,
     currentYear,
-    layers,
   });
 
-  // Update layer visibility when layers prop changes
+  // Update layer visibility when layers prop changes (after data loads)
   useLayerVisibility({
     map,
     initialized,
+    dataLoaded,
     layers,
   });
 

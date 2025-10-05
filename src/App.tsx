@@ -9,29 +9,13 @@ import {
 } from "./components";
 import {} from "./components/time-slider";
 import type { MapLayer } from "./types";
+import { LAYERS } from "./config/layers";
 import "./styles.css";
 
 function App() {
   const [activeTab, setActiveTab] = useState<"map" | "dashboard">("map");
   const [currentYear, setCurrentYear] = useState(2024);
-  const [layers, setLayers] = useState<MapLayer[]>([
-    {
-      id: "gain",
-      name: "Mangrove Gain (2020-2024)",
-      visible: false,
-      type: "gain",
-    },
-    { id: "loss", name: "Mangrove Loss (2025)", visible: false, type: "loss" },
-    {
-      id: "mangrove",
-      name: "Mangrove Zones",
-      visible: false,
-      type: "mangrove",
-    },
-    { id: "forest", name: "Degraded Forests", visible: false, type: "forest" },
-    { id: "flood", name: "Flood Inundation", visible: false, type: "flood" },
-    { id: "carbon", name: "Carbon Loss Areas", visible: false, type: "carbon" },
-  ]);
+  const [layers, setLayers] = useState<MapLayer[]>(LAYERS);
 
   const [controlSidebarOpen, setControlSidebarOpen] = useState(false);
   const [timeSliderOpen, setTimeSliderOpen] = useState(false);
