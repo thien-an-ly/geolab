@@ -27,7 +27,7 @@ const defaultStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
 const mangroveChangeStrategy = (): LayerStyleStrategy => ({
   fillColor: [
     "match",
-    ["get", "Change_Type"],
+    ["get", "change_type"],
     "Gain",
     "#00ff00", // Green for gain
     "Loss",
@@ -36,7 +36,7 @@ const mangroveChangeStrategy = (): LayerStyleStrategy => ({
   ],
   lineColor: [
     "match",
-    ["get", "Change_Type"],
+    ["get", "change_type"],
     "Gain",
     "#00aa00", // Dark green for gain
     "Loss",

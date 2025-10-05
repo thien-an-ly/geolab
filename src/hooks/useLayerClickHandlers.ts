@@ -66,10 +66,16 @@ export function useLayerClickHandlers({
 
         // Store cleanup function
         const cleanup = () => {
-          if (map.getLayer(fillLayerId)) {
-            map.off("click", fillLayerId, handleClick);
-            map.off("mouseenter", fillLayerId, handleMouseEnter);
-            map.off("mouseleave", fillLayerId, handleMouseLeave);
+          // Check if map is still valid and layer exists
+          try {
+            if (map.getLayer(fillLayerId)) {
+              map.off("click", fillLayerId, handleClick);
+              map.off("mouseenter", fillLayerId, handleMouseEnter);
+              map.off("mouseleave", fillLayerId, handleMouseLeave);
+            }
+          } catch (e) {
+            // Map may have been destroyed, ignore cleanup errors
+            console.debug(`Cleanup skipped for ${fillLayerId}:`, e);
           }
         };
 

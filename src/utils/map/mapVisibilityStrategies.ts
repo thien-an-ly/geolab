@@ -64,17 +64,17 @@ const mangroveChangeVisibilityStrategy: VisibilityStrategy = (
   // If both are visible, show both (filter to exclude "No change")
   if (gainVisible && lossVisible) {
     updateLayerVisibility(map, sourceLayerId, "visible");
-    applyLayerFilter(map, sourceLayerId, "Change_Type", ["Gain", "Loss"]);
+    applyLayerFilter(map, sourceLayerId, "change_type", ["Gain", "Loss"]);
   }
   // If only gain is visible
   else if (gainVisible) {
     updateLayerVisibility(map, sourceLayerId, "visible");
-    applyLayerFilter(map, sourceLayerId, "Change_Type", "Gain");
+    applyLayerFilter(map, sourceLayerId, "change_type", "Gain");
   }
   // If only loss is visible
   else if (lossVisible) {
     updateLayerVisibility(map, sourceLayerId, "visible");
-    applyLayerFilter(map, sourceLayerId, "Change_Type", "Loss");
+    applyLayerFilter(map, sourceLayerId, "change_type", "Loss");
   }
   // If neither is visible, hide the layer
   else {

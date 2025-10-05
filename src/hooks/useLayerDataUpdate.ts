@@ -101,8 +101,10 @@ export function useDataSourceUpdate({
       }
 
       // Set loading flag to true when all data updates are complete
+      console.log(
+        `✓ All data loaded for year ${currentYear}, setting dataLoaded=true`
+      );
       setDataLoaded(true);
-      console.log(`✓ All data loaded for year ${currentYear}`);
     };
 
     updateDataSources();
