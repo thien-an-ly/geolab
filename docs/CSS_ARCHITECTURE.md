@@ -1,22 +1,671 @@
-# CSS Architecture Recommendations
+# CSS Architecture Documentation
 
-## Kakadu Wetlands Sentinel
+## Overview
 
-### ✅ Current State (After Refactoring)
+The project uses a **component-colocated CSS architecture** where each component has its own CSS file in the same directory. Global styles and design tokens are managed centrally.
+
+---
+
+## Current Architecture
+
+### ✅ Implemented Structure
 
 ```
 src/
-├── colors.css                    # Design tokens & variables
-├── index.css                     # Global base styles
-├── style.css                     # Legacy global styles (to be broken down)
+├── main.tsx                          # Entry point - imports global CSS
+│   ├── theme.css                     # 🎨 Design tokens (CSS variables)
+│   └── index.css                     # 📄 Base HTML/reset styles
+│
+├── App.tsx                           # Root component
+│   └── styles.css                    # 🌍 Global layout & utilities
+│
 └── components/
-    ├── Navigation.css            # ✅ Modular
-    └── ControlSidebar.css        # ✅ Modular (just created!)
+    ├── navigation/
+    │   ├── Navigation.tsx
+    │   └── Navigation.css            # ✅ Component-scoped
+    │
+    ├── control-sidebar/
+    │   ├── ControlSidebar.tsx
+    │   └── ControlSidebar.css        # ✅ Component-scoped
+    │
+    ├── dashboard/
+    │   ├── Dashboard.tsx
+    │   └── Dashboard.css             # ✅ Component-scoped
+    │
+    ├── bottom-sidebar/
+    │   ├── BottomSidebar.tsx
+    │   └── BottomSidebar.css         # ✅ Component-scoped
+    │
+    ├── map-view/
+    │   ├── MapView.tsx
+    │   └── MapView.css               # ✅ Component-scoped
+    │
+    ├── time-slider/
+    │   ├── TimeSlider.tsx
+    │   └── TimeSlider.css            # ✅ Component-scoped
+    │
+    ├── time-series-chart/
+    │   ├── TimeSeriesChart.tsx
+    │   └── TimeSeriesChart.css       # ✅ Component-scoped
+    │
+    ├── legend/
+    │   ├── Legend.tsx
+    │   └── Legend.css                # ✅ Component-scoped
+    │
+    └── layer-control/
+        ├── LayerControl.tsx
+        └── LayerControl.css          # ✅ Component-scoped
 ```
 
 ---
 
-## 🎯 Recommended CSS Modularization Strategy
+## CSS Import Chain
+
+### 1. Global Styles (main.tsx)
+
+```typescript
+import "./theme.css"; // 1️⃣ Design tokens first
+import "./index.css"; // 2️⃣ Base HTML/reset styles
+import App from "./App.tsx";
+```
+
+**Order matters**: Design tokens must be loaded before other styles that reference them.
+
+### 2. App-Level Styles (App.tsx)
+
+```typescript
+import "./styles.css"; // Global layout & utilities
+```
+
+### 3. Component-Level Styles (Example: MapView.tsx)
+
+```typescript
+import "mapbox-gl/dist/mapbox-gl.css"; // External library CSS
+import "./MapView.css"; // Component-specific styles
+```
+
+---
+
+## File Purposes
+
+### 🎨 `theme.css` - Design System
+
+**Purpose:** Single source of truth for design tokens (CSS variables)
+
+**Contains:**
+
+- Color palette (derived from logo.svg)
+- Typography scales
+- Spacing system
+- Semantic color mappings
+- Component-specific tokens
+
+**Key Sections:**
+
+```css
+:root {
+  /* Primary Brand Colors */
+  --color-navy: #213468;
+  --color-cyan: #63c9d6;
+  --color-medium-blue: #2984b7;
+
+  /* Typography */
+  --font-display: "Montserrat", ...;
+  --font-body: "Open Sans", ...;
+
+  /* Semantic Colors */
+  --color-background-primary: ...;
+  --color-text-primary: ...;
+  --color-border-primary: ...;
+}
+```
+
+**Usage in components:**
+
+```css
+.component {
+  color: var(--color-text-primary);
+  background: var(--color-background-panel);
+  border: 1px solid var(--color-border-accent);
+}
+```
+
+---
+
+### 📄 `index.css` - Base Styles
+
+**Purpose:** HTML element resets and foundational typography
+
+**Contains:**
+
+- CSS reset (`*, body, html`)
+- Default font settings
+- Line heights
+- Text rendering optimizations
+- Heading defaults
+
+**Example:**
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, ...;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+```
+
+---
+
+### 🌍 `styles.css` - Global Utilities
+
+**Purpose:** Application-wide layout and utility classes
+
+**Contains:**
+
+- Root layout (`#root` flexbox setup)
+- Body styles (font-family inheritance from theme)
+- Global utilities
+- Full-height layout rules
+
+**Example:**
+
+```css
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+---
+
+### 🧩 Component CSS Files
+
+**Purpose:** Scoped styles for individual components
+
+**Pattern:**
+
+```
+ComponentName.tsx
+ComponentName.css  ← Same directory, same name
+```
+
+**Import Convention:**
+
+```typescript
+// In ComponentName.tsx
+import "./ComponentName.css";
+
+export function ComponentName() { ... }
+```
+
+**Guidelines:**
+
+- Use design tokens from `theme.css`
+- Avoid global class names (scope to component)
+- Keep selectors shallow (avoid deep nesting)
+- Comment complex layouts
+
+**Example (Navigation.css):**
+
+```css
+.navigation {
+  background: var(--color-background-secondary);
+  border-bottom: 2px solid var(--color-border-accent);
+  padding: 1rem 2rem;
+}
+
+.navigation__logo {
+  height: 40px;
+  width: auto;
+}
+
+.navigation__title {
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+}
+```
+
+---
+
+## CSS Architecture Principles
+
+### 1. **Component Colocation** ✅
+
+CSS lives next to the component that uses it.
+
+**Benefits:**
+
+- Easy to find and update styles
+- Clear ownership
+- Better maintainability
+- Can delete component + CSS together
+
+### 2. **Design Tokens** ✅
+
+Use CSS variables from `theme.css` instead of hard-coded values.
+
+```css
+/* ❌ BAD - Hard-coded */
+.button {
+  background: #213468;
+  color: #63c9d6;
+}
+
+/* ✅ GOOD - Design tokens */
+.button {
+  background: var(--color-navy);
+  color: var(--color-cyan);
+}
+```
+
+### 3. **Cascade Hierarchy** ✅
+
+```
+theme.css (design tokens)
+    ↓
+index.css (HTML resets)
+    ↓
+styles.css (global utilities)
+    ↓
+Component CSS (scoped styles)
+```
+
+### 4. **No CSS Modules** ℹ️
+
+Currently using **plain CSS** with manual scoping via naming conventions.
+
+**Future consideration:** Migrate to CSS Modules for automatic scoping:
+
+```typescript
+import styles from "./Component.module.css";
+<div className={styles.container} />;
+```
+
+---
+
+## Naming Conventions
+
+### Current Pattern: BEM-inspired
+
+```css
+/* Block */
+.navigation {
+}
+
+/* Block__Element */
+.navigation__logo {
+}
+.navigation__title {
+}
+
+/* Block--Modifier */
+.navigation--collapsed {
+}
+
+/* Block__Element--Modifier */
+.navigation__title--highlighted {
+}
+```
+
+### Guidelines
+
+1. **Use descriptive class names**
+
+   - `.map-container` not `.mc`
+   - `.legend-item` not `.li`
+
+2. **Avoid generic names**
+
+   - `.sidebar-header` not `.header`
+   - `.map-controls` not `.controls`
+
+3. **Prefix component-specific classes**
+
+   ```css
+   /* In MapView.css */
+   .mapview-container {
+   }
+   .mapview-controls {
+   }
+   ```
+
+4. **Use kebab-case**
+   - `.control-sidebar` not `.controlSidebar`
+   - `.time-slider` not `.timeSlider`
+
+---
+
+## Common Patterns
+
+### Layout Containers
+
+```css
+.component-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-background-primary);
+}
+```
+
+### Overlays & Panels
+
+```css
+.panel {
+  background: var(--color-background-panel);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px var(--color-shadow-default);
+}
+```
+
+### Interactive Elements
+
+```css
+.button {
+  background: var(--color-button-primary);
+  color: var(--color-text-primary);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background: var(--color-button-primary-hover);
+}
+```
+
+### Scrollable Areas
+
+```css
+.scrollable {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: 4px;
+}
+```
+
+---
+
+## External CSS Dependencies
+
+### Mapbox GL JS
+
+```typescript
+// In MapView.tsx
+import "mapbox-gl/dist/mapbox-gl.css";
+```
+
+**Purpose:** Mapbox controls, markers, popups styling
+
+**Customization:** Override in `MapView.css`:
+
+```css
+/* Customize Mapbox controls */
+.mapboxgl-ctrl-group {
+  background: var(--color-background-panel) !important;
+  border: 1px solid var(--color-border-primary) !important;
+}
+```
+
+---
+
+## Performance Considerations
+
+### Load Order Optimization
+
+1. **Critical CSS first** (theme.css, index.css)
+2. **Layout CSS second** (styles.css)
+3. **Component CSS on-demand** (bundled with component)
+
+### Vite Bundling
+
+Vite automatically:
+
+- ✅ Bundles CSS with components
+- ✅ Tree-shakes unused CSS
+- ✅ Minifies in production
+- ✅ Generates source maps
+
+### Best Practices
+
+1. **Avoid @import in CSS** (use TypeScript imports instead)
+2. **Keep selectors shallow** (max 3 levels deep)
+3. **Use CSS variables** (browser-native, no runtime cost)
+4. **Minimize specificity wars** (avoid `!important`)
+
+---
+
+## Development Workflow
+
+### Adding a New Component
+
+1. Create component directory:
+
+   ```
+   src/components/my-component/
+   ```
+
+2. Create files:
+
+   ```
+   MyComponent.tsx
+   MyComponent.css
+   index.ts (re-export)
+   ```
+
+3. Import CSS in component:
+
+   ```typescript
+   import "./MyComponent.css";
+   ```
+
+4. Use design tokens:
+   ```css
+   .my-component {
+     background: var(--color-background-panel);
+   }
+   ```
+
+### Modifying Styles
+
+1. **Component-specific?** → Edit `ComponentName.css`
+2. **Global utility?** → Add to `styles.css`
+3. **Design token?** → Update `theme.css`
+4. **HTML reset?** → Modify `index.css`
+
+### Debugging Styles
+
+**Browser DevTools:**
+
+```
+1. Inspect element
+2. Check "Computed" tab for final values
+3. Check "Styles" tab for source file
+4. Look for CSS variable values in :root
+```
+
+**Common Issues:**
+
+- Specificity conflicts → Use more specific selector
+- Variable not defined → Check `theme.css` import order
+- Style not applying → Check CSS import in component
+
+---
+
+## Testing Styles
+
+### Visual Regression Testing (Future)
+
+Consider adding:
+
+- Chromatic (Storybook)
+- Percy
+- Playwright screenshots
+
+### Manual Testing Checklist
+
+- [ ] Light/dark mode (if applicable)
+- [ ] Responsive breakpoints
+- [ ] Browser compatibility (Chrome, Firefox, Safari)
+- [ ] Print styles (if needed)
+- [ ] Color contrast (accessibility)
+
+---
+
+## Maintenance
+
+### Regular Audits
+
+1. **Unused CSS**
+
+   - Search for class names in `.tsx` files
+   - Remove if no matches found
+
+2. **Duplicate Styles**
+
+   - Extract common patterns to `styles.css`
+   - Create shared utility classes
+
+3. **Design Token Consistency**
+   - Ensure all colors come from `theme.css`
+   - No hard-coded hex values in component CSS
+
+### Refactoring Strategy
+
+**When to extract:**
+
+- Style used in 3+ components → Move to `styles.css`
+- Color used in 2+ files → Add to `theme.css`
+- Complex selector → Simplify or add comment
+
+**When to inline:**
+
+- One-off styles → Keep in component CSS
+- Highly specific → Don't over-generalize
+
+---
+
+## Future Enhancements
+
+### Potential Improvements
+
+1. **CSS Modules**
+
+   ```typescript
+   import styles from "./Component.module.css";
+   <div className={styles.container} />;
+   ```
+
+   **Benefits:** Automatic scoping, type safety
+
+2. **Tailwind CSS**
+
+   - Utility-first approach
+   - Smaller bundle sizes
+   - Faster development
+
+3. **CSS-in-JS** (Styled Components, Emotion)
+
+   - Dynamic styles
+   - Theme context
+   - TypeScript integration
+
+4. **Design System Library**
+   - Shared component library
+   - Documented patterns
+   - Storybook integration
+
+---
+
+## Troubleshooting
+
+### Styles Not Applying
+
+**Check:**
+
+1. CSS import in component? (`import "./Component.css"`)
+2. Class name typo? (Check DevTools)
+3. Specificity conflict? (More specific selector needed)
+4. CSS variable defined? (Check `:root` in theme.css)
+
+### Variable Not Found
+
+```css
+/* ❌ Variable undefined */
+color: var(--color-doesnt-exist);
+
+/* ✅ Check theme.css */
+:root {
+  --color-doesnt-exist: #000; /* Add if missing */
+}
+```
+
+### Import Order Issues
+
+```typescript
+// ❌ BAD - Component CSS before theme
+import "./Component.css";
+import "./theme.css";
+
+// ✅ GOOD - Theme loaded in main.tsx first
+// main.tsx imports theme.css
+// Component imports Component.css
+```
+
+---
+
+## Summary
+
+### Architecture Strengths
+
+✅ **Colocated styles** - Easy to find and maintain  
+✅ **Design tokens** - Consistent theming  
+✅ **Modular** - Each component self-contained  
+✅ **Scalable** - Easy to add new components  
+✅ **Type-safe** (with future CSS Modules)
+
+### Key Principles
+
+1. **Global first** - Load theme.css and index.css in main.tsx
+2. **Component scoped** - Each component has its own CSS
+3. **Use tokens** - Reference design system variables
+4. **Keep simple** - Avoid over-engineering
+5. **Stay consistent** - Follow naming conventions
+
+---
+
+**Last Updated:** October 5, 2025  
+**Status:** ✅ Production architecture - fully implemented
 
 ### Phase 1: Component-Level CSS Extraction (High Priority)
 
