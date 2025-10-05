@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Map, { NavigationControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import type { MapLayer } from "../../types";
+import type { MapLayer, FeatureClickData } from "../../types";
 import {
   useInitMap,
   useDataSourceUpdate,
@@ -13,7 +13,7 @@ import "./MapView.css";
 interface MapViewProps {
   layers: MapLayer[];
   currentYear: number;
-  onFeatureClick?: (feature: Record<string, unknown>) => void;
+  onFeatureClick?: (data: FeatureClickData) => void;
 }
 
 // Component to initialize all layers once on map load
@@ -24,7 +24,7 @@ function LayerInitializer({
 }: {
   layers: MapLayer[];
   currentYear: number;
-  onFeatureClick?: (feature: Record<string, unknown>) => void;
+  onFeatureClick?: (data: FeatureClickData) => void;
 }) {
   // Get map instance and initialization status
   const { map, initialized } = useInitMap();

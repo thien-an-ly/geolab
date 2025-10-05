@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import type { Map as MapboxMap } from "mapbox-gl";
 import { DATA_SOURCES_CONFIG } from "../config/dataSources";
+import type { FeatureClickData } from "../types";
 
 interface UseLayerClickHandlersOptions {
   map: MapboxMap; // Non-null: guaranteed by dataLoaded flag
   dataLoaded: boolean;
-  onFeatureClick?: (feature: Record<string, unknown>) => void;
+  onFeatureClick?: (data: FeatureClickData) => void;
 }
 
 /**
@@ -42,7 +43,10 @@ export function useLayerClickHandlers({
       if (map.getLayer(fillLayerId) && !cleanupFunctions.has(config.id)) {
         const handleClick = (e: mapboxgl.MapMouseEvent) => {
           if (e.features && e.features.length > 0) {
-            onFeatureClick(e.features[0].properties as Record<string, unknown>);
+            onFeatureClick({
+              properties: e.features[0].properties as Record<string, unknown>,
+              layerType: config.layerType,
+            });
           }
         };
 

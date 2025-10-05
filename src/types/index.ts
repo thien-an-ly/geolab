@@ -25,13 +25,16 @@ export interface MapLayer {
 }
 
 export type MapLayerType =
-  | "gain"
-  | "loss"
   | "mangrove"
   | "mangrove-change"
   | "forest"
   | "flood"
   | "carbon";
+
+export interface FeatureClickData {
+  properties: Record<string, unknown>;
+  layerType: MapLayerType;
+}
 
 export interface KakaduRegion {
   name: string;

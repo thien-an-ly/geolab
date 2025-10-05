@@ -8,7 +8,7 @@ import {
   BottomSidebar,
 } from "./components";
 import {} from "./components/time-slider";
-import type { MapLayer } from "./types";
+import type { MapLayer, FeatureClickData } from "./types";
 import { LAYERS } from "./config/layers";
 import "./styles.css";
 
@@ -20,13 +20,8 @@ function App() {
   const [controlSidebarOpen, setControlSidebarOpen] = useState(false);
   const [timeSliderOpen, setTimeSliderOpen] = useState(false);
   const [bottomSidebarOpen, setBottomSidebarOpen] = useState(false);
-  const [selectedFeature, setSelectedFeature] = useState<Record<
-    string,
-    unknown
-  > | null>(null);
-  const [selectedFeatureId, setSelectedFeatureId] = useState<string | null>(
-    null
-  );
+  const [selectedFeature, setSelectedFeature] =
+    useState<FeatureClickData | null>(null);
 
   const handleToggleLayer = (layerId: string) => {
     setLayers((prevLayers) =>
@@ -36,29 +31,16 @@ function App() {
     );
   };
 
-  const handleFeatureClick = (feature: Record<string, unknown>) => {
-    setSelectedFeature(feature);
-    console.log("Feature clicked:", selectedFeature);
-
-    const featureId = (feature.id ||
-      feature.fid ||
-      feature.objectid ||
-      feature.FID ||
-      feature.OBJECTID ||
-      "unknown") as string;
-
-    // some features have no ID to visualize over time -> don't show bottom sidebar
-    if (featureId === "unknown") {
-      console.warn("Unable to extract feature ID from feature");
-      return;
-    } else console.log("Extracted Feature ID:", featureId);
+  const handleFeatureClick = (data: FeatureClickData) => {
+    // Add current year to the feature data
+    setSelectedFeature(data);
+    console.log("Feature clicked:", data.properties);
 
     // Close time slider if open
     if (timeSliderOpen) {
       setTimeSliderOpen(false);
     }
 
-    setSelectedFeatureId(featureId);
     setBottomSidebarOpen(true);
   };
 
@@ -94,7 +76,8 @@ function App() {
             <BottomSidebar
               isOpen={bottomSidebarOpen}
               onClose={() => setBottomSidebarOpen(false)}
-              featureId={selectedFeatureId}
+              feature={selectedFeature}
+              year={currentYear}
             />
           </div>
         </>
