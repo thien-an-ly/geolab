@@ -34,7 +34,7 @@ function App() {
   const handleFeatureClick = (data: FeatureClickData) => {
     // Add current year to the feature data
     setSelectedFeature(data);
-    console.log("Feature clicked:", data.properties);
+    // console.log("Feature clicked:", data.properties);
 
     // Close time slider if open
     if (timeSliderOpen) {
@@ -46,7 +46,7 @@ function App() {
 
   const handleYearChange = (year: number) => {
     setCurrentYear(year);
-    console.log(`Year changed to ${year}`);
+    // console.log(`Year changed to ${year}`);
   };
 
   return (

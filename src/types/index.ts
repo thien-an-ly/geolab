@@ -2,10 +2,7 @@
 
 export interface TimeSeriesData {
   date: string;
-  ndvi: number;
-  floodSignal?: number;
-  droughtSignal?: number;
-  carbonLoss?: number;
+  [key: string]: string | number | undefined;
 }
 
 export interface MapLayer {

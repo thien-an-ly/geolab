@@ -24,7 +24,7 @@ export function useInitMap(): UseInitMapResult {
     // Map is ready - signal that layer operations can begin
     setInitialized(true);
     setMap(mapRef);
-    console.log("✓ Map ready for layer operations");
+    // console.log("✓ Map ready for layer operations");
   }, [mapRef, initialized]);
 
   return { map, initialized };

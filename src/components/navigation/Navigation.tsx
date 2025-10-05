@@ -20,13 +20,13 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
           className={`nav-tab ${activeTab === "map" ? "active" : ""}`}
           onClick={() => onTabChange("map")}
         >
-          🗺️ Map View
+          Map View
         </button>
         <button
           className={`nav-tab ${activeTab === "dashboard" ? "active" : ""}`}
           onClick={() => onTabChange("dashboard")}
         >
-          📊 Dashboard
+          Dashboard
         </button>
       </div>
     </nav>

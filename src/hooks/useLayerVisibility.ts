@@ -27,24 +27,24 @@ export function useLayerVisibility({
   layers,
 }: UseLayerVisibilityOptions) {
   useEffect(() => {
-    console.log(
-      `🔍 useLayerVisibility effect triggered (initialized: ${initialized}, dataLoaded: ${dataLoaded}, layers updated)`
-    );
+    // console.log(
+    //   `🔍 useLayerVisibility effect triggered (initialized: ${initialized}, dataLoaded: ${dataLoaded}, layers updated)`
+    // );
 
     // initialized can only be true if map is valid
     // (guaranteed by useMapLayers' initialization logic)
     // dataLoaded ensures layers exist before applying visibility
     if (!initialized || !dataLoaded) {
-      console.log(
-        `⏸️ useLayerVisibility skipped (initialized: ${initialized}, dataLoaded: ${dataLoaded})`
-      );
+      // console.log(
+      //   `⏸️ useLayerVisibility skipped (initialized: ${initialized}, dataLoaded: ${dataLoaded})`
+      // );
       return;
     }
 
-    console.log(
-      "🔄 useLayerVisibility executing with layers:",
-      layers.map((l) => `${l.type}=${l.visible}`).join(", ")
-    );
+    // console.log(
+    //   "🔄 useLayerVisibility executing with layers:",
+    //   layers.map((l) => `${l.type}=${l.visible}`).join(", ")
+    // );
 
     // Build a map of all layer states for coordinated strategies
     const layerStates = new Map<MapLayerType, boolean>();
@@ -71,9 +71,7 @@ export function useLayerVisibility({
       }
 
       const strategy = getVisibilityStrategy(layer.type);
-      console.log(
-        `  → Applying ${layer.type} visibility: ${layer.visible} (dataSource: ${dataSourceId})`
-      );
+      // console.log(`  → Applying ${layer.type} visibility: ${layer.visible} (dataSource: ${dataSourceId})`);
       strategy(map, dataSourceId, layer.visible, layerStates);
     });
     // map is intentionally excluded:
@@ -81,6 +79,6 @@ export function useLayerVisibility({
     // - initialized: triggers on first load
     // - dataLoaded: triggers after data sources are loaded
     // - layers: triggers on visibility changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialized, dataLoaded, layers]);
 }

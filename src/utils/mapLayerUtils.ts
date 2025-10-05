@@ -12,12 +12,12 @@ export async function fetchGeoJSONData(
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      console.warn(`Failed to fetch data from ${url}: ${response.statusText}`);
+      // console.warn(`Failed to fetch data from ${url}: ${response.statusText}`);
       return null;
     }
     return await response.json();
   } catch (error) {
-    console.warn(`Error fetching data from ${url}:`, error);
+    // console.warn(`Error fetching data from ${url}:`, error);
     return null;
   }
 }
@@ -31,7 +31,7 @@ export function addMapSource(
   data: GeoJSON.FeatureCollection
 ): boolean {
   if (map.getSource(sourceId)) {
-    console.log(`Source ${sourceId} already exists, skipping...`);
+    // console.log(`Source ${sourceId} already exists, skipping...`);
     return false;
   }
 
@@ -56,7 +56,7 @@ export function addMapLayers(
 
   // Check if layers already exist
   if (map.getLayer(fillLayerId) || map.getLayer(lineLayerId)) {
-    console.log(`Layers for ${config.name} already exist, skipping...`);
+    // console.log(`Layers for ${config.name} already exist, skipping...`);
     return false;
   }
 

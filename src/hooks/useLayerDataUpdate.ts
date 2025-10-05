@@ -44,7 +44,7 @@ export function useDataSourceUpdate({
       currentYear
     );
 
-    console.log(`Updating map data for year ${currentYear}...`);
+    // console.log(`Updating map data for year ${currentYear}...`);
 
     // Set loading flag to false when starting data update
     setDataLoaded(false);
@@ -60,9 +60,9 @@ export function useDataSourceUpdate({
           const data = await fetchGeoJSONData(config.dataUrl);
 
           if (!data) {
-            console.warn(
-              `No data available for ${config.name} in year ${currentYear} - removing layers`
-            );
+            // console.warn(
+            //   `No data available for ${config.name} in year ${currentYear} - removing layers`
+            // );
             // Remove layers if data is not available
             removeMapLayers(map, config.id);
             continue;
@@ -72,7 +72,7 @@ export function useDataSourceUpdate({
           const updated = updateSourceData(map, sourceId, data);
 
           if (updated) {
-            console.log(`✓ Updated ${config.name} for year ${currentYear}`);
+            // console.log(`✓ Updated ${config.name} for year ${currentYear}`);
           } else {
             // If source doesn't exist, create it (initial load or re-add after removal)
             addMapSource(map, sourceId, data);
@@ -87,13 +87,14 @@ export function useDataSourceUpdate({
               addMapLayers(map, config, sourceId, visibility);
             }
 
-            console.log(`✓ Loaded ${config.name} for year ${currentYear}`);
+            // console.log(`✓ Loaded ${config.name} for year ${currentYear}`);
           }
+          /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
         } catch (error) {
-          console.warn(
-            `Failed to update ${config.name} for year ${currentYear}:`,
-            error
-          );
+          // console.warn(
+          //   `Failed to update ${config.name} for year ${currentYear}:`,
+          //   error
+          // );
 
           // Remove layers on error as well
           removeMapLayers(map, config.id);
@@ -101,9 +102,9 @@ export function useDataSourceUpdate({
       }
 
       // Set loading flag to true when all data updates are complete
-      console.log(
-        `✓ All data loaded for year ${currentYear}, setting dataLoaded=true`
-      );
+      // console.log(
+      //   `✓ All data loaded for year ${currentYear}, setting dataLoaded=true`
+      // );
       setDataLoaded(true);
     };
 

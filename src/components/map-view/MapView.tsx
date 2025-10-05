@@ -67,12 +67,12 @@ export function MapView({ layers, currentYear, onFeatureClick }: MapViewProps) {
           zoom: 8,
         }}
         onLoad={() => {
-          console.log("✓ Map loaded successfully!");
+          // console.log("✓ Map loaded successfully!");
           setIsLoaded(true);
         }}
-        onError={(evt) => {
-          console.error("✗ Mapbox error:", evt);
-        }}
+        // onError={(evt) => {
+        //   // console.error("✗ Mapbox error:", evt);
+        // }}
         mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
         mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
         style={{ width: "100%", height: "100%" }}

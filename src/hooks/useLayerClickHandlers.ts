@@ -79,13 +79,13 @@ export function useLayerClickHandlers({
             }
           } catch (e) {
             // Map may have been destroyed, ignore cleanup errors
-            console.debug(`Cleanup skipped for ${fillLayerId}:`, e);
+            // console.debug(`Cleanup skipped for ${fillLayerId}:`, e);
           }
         };
 
         cleanupFunctions.set(config.id, cleanup);
 
-        console.log(`✓ Click handlers attached to ${config.name}`);
+        // console.log(`✓ Click handlers attached to ${config.name}`);
       }
     });
 
@@ -99,7 +99,7 @@ export function useLayerClickHandlers({
         if (cleanup) {
           cleanup();
           cleanupFunctions.delete(id);
-          console.log(`✓ Click handlers removed from ${id}`);
+          // console.log(`✓ Click handlers removed from ${id}`);
         }
       }
     });

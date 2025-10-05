@@ -1,66 +1,128 @@
+import { useState, useEffect } from "react";
 import { TimeSeriesChart } from "../time-series-chart";
-import { mockTimeSeriesData } from "../../utils/mockData";
+import { loadStatsData } from "../../utils/loadStatsData";
+import type { TimeSeriesData } from "../../types";
 import "./Dashboard.css";
 
 export function Dashboard() {
+  const [chartData, setChartData] = useState<TimeSeriesData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const statsData = await loadStatsData();
+        setChartData(statsData as TimeSeriesData[]);
+      } catch (error) {
+        // console.error("Failed to load stats data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
   return (
     <div id="dashboard">
       <div className="dashboard-content">
         <div className="dashboard-section">
-          <TimeSeriesChart
-            data={mockTimeSeriesData}
-            title="Seasonal Trends - Kakadu National Park"
-          />
+          {loading ? (
+            <div style={{ textAlign: "center", padding: "2rem" }}>
+              Loading data...
+            </div>
+          ) : chartData.length > 0 ? (
+            <TimeSeriesChart
+              data={chartData}
+              title="Yearly Trends - Kakadu National Park (2014-2024)"
+            />
+          ) : (
+            <div style={{ textAlign: "center", padding: "2rem" }}>
+              No data available
+            </div>
+          )}
         </div>
 
         <div className="dashboard-section">
           <h2>About This Tool</h2>
           <p>
-            Kakadu Wetlands Sentinel visualizes satellite-derived ecological
-            indicators including:
+            Kakadu Wetlands Sentinel is a static web-based visualization tool
+            for monitoring ecological indicators and exploring their correlation
+            with environmental change in Australia's Kakadu National Park. This
+            tool provides interactive access to multi-temporal satellite data
+            spanning 2014-2024.
+          </p>
+
+          <h3>Key Features</h3>
+          <ul>
+            <li>
+              🌲 <strong>Mangrove Distribution & Change</strong> -
+              Year-over-year mangrove extent tracking with gain/loss analysis
+              (2014-2024)
+            </li>
+            <li>
+              🩺 <strong>Vegetation Health Monitoring</strong> - NDVI time
+              series for mangrove-specific zones
+            </li>
+            <li>
+              💧 <strong>Flood Extent Mapping</strong> - Annual flood area
+              measurements derived from SAR imagery (2016-2024)
+            </li>
+            <li>
+              💨 <strong>Carbon Dynamics</strong> - Spatial visualization of
+              carbon gain, loss, and stock measurements
+            </li>
+            <li>
+              📈 <strong>Time Series Analysis</strong> - Interactive charts
+              combining NDVI trends with area measurements
+            </li>
+          </ul>
+
+          <h3>Data Sources</h3>
+          <p>
+            This project integrates multiple authoritative satellite-derived
+            datasets:
           </p>
           <ul>
             <li>
-              🟢 <strong>Mangrove Gain</strong> - Areas showing increased
-              mangrove coverage (2020-2024)
+              <strong>Global Mangrove Distribution</strong> - NASA's mangrove
+              biomass and canopy height product providing baseline distribution
+              and carbon stock estimates
             </li>
             <li>
-              🔴 <strong>Mangrove Loss</strong> - Areas with mangrove
-              degradation (2025)
+              <strong>Landsat NDVI</strong> - USGS Landsat missions providing
+              normalized difference vegetation index for vegetation health
+              assessment (2014-2024)
             </li>
-            <li>📊 NDVI from Landsat (vegetation health)</li>
-            <li>💧 Flood/drought signals from Sentinel-1 SAR</li>
-            <li>🌲 Mangrove zones</li>
-            <li>⚠️ Carbon loss correlation (Sentinel-5P + IPCC)</li>
+            <li>
+              <strong>Sentinel-1 SAR</strong> - ESA's synthetic aperture radar
+              for flood extent detection and hydrological monitoring
+            </li>
+            <li>
+              <strong>Digital Earth Australia Mangroves</strong> - Annual
+              mangrove extent mapping (Geoscience Australia) enabling change
+              detection analysis
+            </li>
           </ul>
 
-          <h3>Current Data</h3>
+          <h3>Technical Approach</h3>
           <p>
-            <strong>TestGain.geojson:</strong> 202ha & 400ha showing vegetation
-            gains
-          </p>
-          <p>
-            <strong>TestLoss.geojson:</strong> 356ha & 560ha showing vegetation
-            losses
-          </p>
-          <p>
-            <strong>TestMangrove.geojson:</strong> 6 zones with density
-            classification and carbon measurements
+            This tool emphasizes <strong>visualization and correlation</strong>{" "}
+            over predictive modeling. All data has been preprocessed and
+            aggregated to yearly statistics for efficient web delivery. The
+            interface uses Mapbox GL JS for interactive geospatial visualization
+            and Recharts for time series analysis.
           </p>
 
-          <h3>Technical Details</h3>
+          <h3>Usage</h3>
           <p>
-            This tool visualizes correlations to support early-stage
-            environmental analysis. Data sources include Landsat imagery,
-            Sentinel-1 SAR, and Sentinel-5P atmospheric measurements combined
-            with IPCC carbon coefficients.
-          </p>
-
-          <h3>Usage Notes</h3>
-          <p>
-            Use the Map View tab to explore geospatial data interactively. Click
-            on map features to view detailed information. Toggle layers using
-            the control panel to compare different ecological indicators.
+            Navigate to the <strong>Map View</strong> tab to explore spatial
+            data layers. Use the control panel to toggle layer visibility and
+            adjust the time slider to view temporal changes. Click on map
+            features to view detailed attribute information. The{" "}
+            <strong>Dashboard</strong> provides overview statistics and trends
+            across the study period.
           </p>
         </div>
       </div>

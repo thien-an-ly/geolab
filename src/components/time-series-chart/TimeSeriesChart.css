@@ -9,7 +9,7 @@
 
 .time-series-chart-title {
   margin: 0 0 1.5rem 0;
-  color: var(--color-text-primary);
+  color: var(--color-cyan);
   font-size: 18px;
   font-weight: 600;
   font-family: var(--font-display);
@@ -31,6 +31,7 @@
 .time-series-chart-container .recharts-legend-item-text {
   color: var(--color-text-primary) !important;
   font-family: var(--font-body);
+  font-size: 12px !important;
 }
 
 .time-series-chart-container .recharts-tooltip-wrapper {
