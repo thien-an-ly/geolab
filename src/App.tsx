@@ -53,7 +53,8 @@ function App() {
   };
 
   const handleFeatureClick = (feature: Record<string, unknown>) => {
-    console.log("Feature clicked:", feature);
+    setSelectedFeature(feature);
+    console.log("Feature clicked:", selectedFeature);
 
     const featureId = (feature.id ||
       feature.fid ||
@@ -73,7 +74,6 @@ function App() {
       setTimeSliderOpen(false);
     }
 
-    setSelectedFeature(feature);
     setSelectedFeatureId(featureId);
     setBottomSidebarOpen(true);
   };
