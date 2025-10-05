@@ -56,6 +56,7 @@ function LayerInitializer({
 
 export function MapView({ layers, currentYear, onFeatureClick }: MapViewProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  console.log(import.meta.env.VITE_MAPBOX_TOKEN);
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
