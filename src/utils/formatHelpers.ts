@@ -36,7 +36,7 @@ export function isKeyExcluded(key: string): boolean {
  *
  * @example
  * formatKey("carbonLoss") => "Carbon Loss"
- * formatKey("Area (ha)") => "Area (Ha)"
+ * formatKey("Area (ha)") => "Area (ha)"
  * formatKey("flood_signal") => "Flood Signal"
  */
 export function formatKey(key: string): string {
@@ -45,9 +45,9 @@ export function formatKey(key: string): string {
     case "ha":
     case "area_ha":
     case "Area":
-      return "Area (Ha)";
+      return "Area (ha)";
     case "ha_change":
-      return "Area of change (Ha)";
+      return "Area of change (ha)";
   }
 
   return key

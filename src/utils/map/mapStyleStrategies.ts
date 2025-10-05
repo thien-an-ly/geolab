@@ -48,6 +48,24 @@ const mangroveChangeStrategy = (): LayerStyleStrategy => ({
 });
 
 /**
+ * Mangrove heatmap gradient strategy - interpolates brown color based on Area (hectares)
+ */
+const mangroveStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
+  fillColor: [
+    "match",
+    ["get", "Density"],
+    "Open forest",
+    "rgba(139, 69, 19, 0.4)", // Brown with 40% opacity for medium areas
+    "Woodland",
+    "rgba(139, 69, 19, 0.7)", // Brown with 70% opacity for large areas
+    "rgba(139, 69, 19, 1)", // Brown with 100% opacity for very large areas
+  ],
+  lineColor: config.style?.lineColor ?? "#5a2d0a",
+  fillOpacity: 1, // Use 1 since opacity is in the color
+  lineWidth: 0.5,
+});
+
+/**
  * Carbon heatmap gradient strategy - interpolates gold color based on gridcode
  */
 const carbonStrategy = (config: DataSourceConfig): LayerStyleStrategy => ({
@@ -114,6 +132,7 @@ const LAYER_STYLE_STRATEGIES: Partial<
   Record<MapLayerType, (config: DataSourceConfig) => LayerStyleStrategy>
 > = {
   "mangrove-change": mangroveChangeStrategy,
+  mangrove: mangroveStrategy,
   carbon: carbonStrategy,
   "carbon-gain": carbonGainStrategy,
   "carbon-loss": carbonLossStrategy,

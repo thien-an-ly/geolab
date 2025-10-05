@@ -41,14 +41,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     dataUrl: `${
       import.meta.env.BASE_URL
     }data/mangrove/mangrove_vector_2024.geojson`,
-    style: {
-      fillColor: "#8B4513",
-      fillOpacity: 0.4,
-      lineColor: "#5a2d0a",
-      lineWidth: 2,
-    },
+    style: null, // defined by strategy
     metadata: {
-      description: "Areas with mangrove vegetation",
+      description: "Areas with mangrove vegetation (heatmap by area)",
       year: "2014-2024",
       source: "Landsat analysis",
     },

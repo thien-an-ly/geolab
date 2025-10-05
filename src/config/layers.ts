@@ -11,25 +11,25 @@ import type { MapLayer, MapLayerType } from "../types";
 export const LAYERS: MapLayer[] = [
   {
     id: "mangrove",
-    name: "Mangrove Areas (Ha)",
+    name: "Mangrove Areas (ha)",
     visible: false,
     type: "mangrove",
   },
   {
     id: "gain",
-    name: "Mangrove Gain (Ha)",
+    name: "Mangrove Gain (ha)",
     visible: false,
     type: "gain",
   },
   {
     id: "loss",
-    name: "Mangrove Loss (Ha)",
+    name: "Mangrove Loss (ha)",
     visible: false,
     type: "loss",
   },
   {
     id: "flood",
-    name: "Flood Inundation (Ha)",
+    name: "Flood Inundation (ha)",
     visible: false,
     type: "flood",
   },
