@@ -10,13 +10,13 @@ type DataUrlStrategy = (year: number) => string;
  * Flood data URL strategy
  */
 const floodUrlStrategy: DataUrlStrategy = (year) =>
-  `/data/flood/Kakadu_FloodOnly_${year}.geojson`;
+  `${import.meta.env.BASE_URL}data/flood/Kakadu_FloodOnly_${year}.geojson`;
 
 /**
  * Mangrove data URL strategy
  */
 const mangroveUrlStrategy: DataUrlStrategy = (year) =>
-  `/data/mangrove/mangrove_vector_${year}.geojson`;
+  `${import.meta.env.BASE_URL}data/mangrove/mangrove_vector_${year}.geojson`;
 
 /**
  * Mangrove change data URL strategy
@@ -24,7 +24,9 @@ const mangroveUrlStrategy: DataUrlStrategy = (year) =>
  */
 const mangroveChangeUrlStrategy: DataUrlStrategy = (year) => {
   const previousYear = year - 1;
-  return `/data/mangrove-change/Mangrove_Change_${previousYear}_${year}.json`;
+  return `${
+    import.meta.env.BASE_URL
+  }data/mangrove-change/Mangrove_Change_${previousYear}_${year}.json`;
 };
 
 /**

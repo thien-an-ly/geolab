@@ -24,7 +24,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     id: "mangrove-change",
     name: "Mangrove Change",
     layerType: "mangrove-change", // Shared source for gain and loss UI layers
-    dataUrl: "/data/mangrove-change/Mangrove_Change_2023_2024.json",
+    dataUrl: `${
+      import.meta.env.BASE_URL
+    }data/mangrove-change/Mangrove_Change_2023_2024.json`,
     style: null, // defined by strategy
     metadata: {
       description: "Areas showing mangrove coverage changes",
@@ -36,7 +38,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     id: "mangrove",
     name: "Mangrove",
     layerType: "mangrove",
-    dataUrl: "/data/mangrove/mangrove_vector_2024.geojson",
+    dataUrl: `${
+      import.meta.env.BASE_URL
+    }data/mangrove/mangrove_vector_2024.geojson`,
     style: {
       fillColor: "#8B4513",
       fillOpacity: 0.4,
@@ -53,7 +57,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     id: "flood",
     name: "Flood Inundation",
     layerType: "flood",
-    dataUrl: "/data/flood/Kakadu_FloodOnly_2024.geojson",
+    dataUrl: `${
+      import.meta.env.BASE_URL
+    }data/flood/Kakadu_FloodOnly_2024.geojson`,
     style: {
       fillColor: "#00bfff",
       fillOpacity: 0.5,
@@ -70,7 +76,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     id: "carbon",
     name: "Estimated Carbon (TCO2)",
     layerType: "carbon",
-    dataUrl: "/data/carbon/Vecotirsed_CarbonStock2014_tco2.json",
+    dataUrl: `${
+      import.meta.env.BASE_URL
+    }data/carbon/Vecotirsed_CarbonStock2014_tco2.json`,
     style: null,
     metadata: {
       description: "Above ground biomass * IPCC default value",
@@ -83,7 +91,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     id: "carbon-gain",
     name: "Estimated Carbon gain (TCO2)",
     layerType: "carbon-gain",
-    dataUrl: "/data/carbon-gain/CarbonGain_1424.geojson",
+    dataUrl: `${
+      import.meta.env.BASE_URL
+    }data/carbon-gain/CarbonGain_1424.geojson`,
     style: null,
     metadata: {
       description:
@@ -97,7 +107,9 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
     id: "carbon-loss",
     name: "Estimated Carbon loss (TCO2)",
     layerType: "carbon-loss",
-    dataUrl: "/data/carbon-loss/CarbonLoss1424.geojson",
+    dataUrl: `${
+      import.meta.env.BASE_URL
+    }data/carbon-loss/CarbonLoss1424.geojson`,
     style: null,
     metadata: {
       description:
