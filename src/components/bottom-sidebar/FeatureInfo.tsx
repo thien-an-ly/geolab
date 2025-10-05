@@ -37,8 +37,6 @@ export function FeatureInfo({ feature, layerType, year }: FeatureInfoProps) {
         return "feature-type-badge feature-type-badge-mangrove";
       case "flood":
         return "feature-type-badge feature-type-badge-flood";
-      case "forest":
-        return "feature-type-badge feature-type-badge-forest";
       case "carbon":
         return "feature-type-badge feature-type-badge-carbon";
       default:

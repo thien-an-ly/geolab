@@ -28,12 +28,6 @@ export const LAYERS: MapLayer[] = [
     type: "mangrove",
   },
   {
-    id: "forest",
-    name: "Degraded Forests",
-    visible: false,
-    type: "forest",
-  },
-  {
     id: "flood",
     name: "Flood Inundation",
     visible: false,

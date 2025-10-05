@@ -16,7 +16,7 @@ const floodUrlStrategy: DataUrlStrategy = (year) =>
  * Mangrove data URL strategy
  */
 const mangroveUrlStrategy: DataUrlStrategy = (year) =>
-  `/data/mangrove/M_${year}.geojson`;
+  `/data/mangrove/mangrove_vector_${year}.geojson`;
 
 /**
  * Mangrove change data URL strategy

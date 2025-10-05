@@ -11,8 +11,6 @@ export function getLayerIcon(type: MapLayerType): string {
       return "🔴";
     case "mangrove":
       return "🌿";
-    case "forest":
-      return "🌲";
     case "flood":
       return "💧";
     case "carbon":
@@ -32,11 +30,9 @@ export function getLegendColor(type: MapLayerType): string {
     case "loss":
       return "#ff0000"; // Red
     case "mangrove":
-      return "#0000ff"; // Blue
+      return "#8B4513"; // Saddle brown
     case "flood":
       return "#00bfff"; // Deep sky blue
-    case "forest":
-      return "#8B4513"; // Saddle brown
     case "carbon":
       return "#ff6600"; // Orange
     default:

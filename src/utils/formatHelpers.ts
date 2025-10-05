@@ -15,13 +15,16 @@ export function isKeyExcluded(key: string): boolean {
   const excludedKeys = [
     "Season",
     "OBJECTID",
+    "OBJECTID1",
     "FID",
     "id",
     "fid",
     "Id",
     "gridcode",
     "Shape_Length",
+    "SHAPE_Length",
     "Shape_Area",
+    "SHAPE_Area",
     "change_type",
   ];
   return excludedKeys.includes(key);
@@ -39,11 +42,10 @@ export function isKeyExcluded(key: string): boolean {
 export function formatKey(key: string): string {
   switch (key) {
     case "area_ha":
+    case "Area":
       return "Area (Ha)";
     case "ha_change":
       return "Area of change (Ha)";
-      case "mangrove_change":
-      return "";
   }
 
   return key

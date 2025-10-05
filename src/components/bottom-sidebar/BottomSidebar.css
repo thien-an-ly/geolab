@@ -110,3 +110,21 @@
     height: 50vh;
   }
 }
+
+/* Scrollbar Styling */
+.bottom-sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.bottom-sidebar-content::-webkit-scrollbar-track {
+  background: var(--color-background-panel);
+}
+
+.bottom-sidebar-content::-webkit-scrollbar-thumb {
+  background: var(--color-background-card);
+  border-radius: 4px;
+}
+
+.bottom-sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan-subtle);
+}

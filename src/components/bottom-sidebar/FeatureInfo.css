@@ -27,9 +27,9 @@
   color: #ffffff;
 }
 
-/* Mangrove Zones - Blue (#0000ff) */
+/* Mangrove Zones - Saddle Brown (#8B4513) */
 .feature-type-badge-mangrove {
-  background: #0000ff;
+  background: #8b4513;
   color: #ffffff;
 }
 
@@ -37,12 +37,6 @@
 .feature-type-badge-flood {
   background: #00bfff;
   color: #000000;
-}
-
-/* Degraded Forest - Saddle Brown (#8B4513) */
-.feature-type-badge-forest {
-  background: #8b4513;
-  color: #ffffff;
 }
 
 /* Carbon Loss - Orange (#ff6600) */

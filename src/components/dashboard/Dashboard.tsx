@@ -30,7 +30,7 @@ export function Dashboard() {
             </li>
             <li>📊 NDVI from Landsat (vegetation health)</li>
             <li>💧 Flood/drought signals from Sentinel-1 SAR</li>
-            <li>🌲 Mangrove zones and degraded forests</li>
+            <li>🌲 Mangrove zones</li>
             <li>⚠️ Carbon loss correlation (Sentinel-5P + IPCC)</li>
           </ul>
 

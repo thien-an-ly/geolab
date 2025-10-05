@@ -25,9 +25,10 @@ export interface MapLayer {
 }
 
 export type MapLayerType =
+  | "gain"
+  | "loss"
   | "mangrove"
   | "mangrove-change"
-  | "forest"
   | "flood"
   | "carbon";
 
