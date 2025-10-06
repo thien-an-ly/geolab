@@ -67,3 +67,8 @@
 .dashboard-section strong {
   color: var(--color-cyan-light);
 }
+
+.dashboard-message {
+  text-align: center;
+  padding: 2rem;
+}

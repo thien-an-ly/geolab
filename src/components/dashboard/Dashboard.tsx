@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { TimeSeriesChart } from "../time-series-chart";
+import { Credits } from "../credits";
 import { loadStatsData } from "../../utils/loadStatsData";
 import type { TimeSeriesData } from "../../types";
 import "./Dashboard.css";
@@ -30,18 +31,14 @@ export function Dashboard() {
       <div className="dashboard-content">
         <div className="dashboard-section">
           {loading ? (
-            <div style={{ textAlign: "center", padding: "2rem" }}>
-              Loading data...
-            </div>
+            <div className="dashboard-message">Loading data...</div>
           ) : chartData.length > 0 ? (
             <TimeSeriesChart
               data={chartData}
               title="Yearly Trends - Kakadu National Park (2014-2024)"
             />
           ) : (
-            <div style={{ textAlign: "center", padding: "2rem" }}>
-              No data available
-            </div>
+            <div className="dashboard-message">No data available</div>
           )}
         </div>
 
@@ -108,11 +105,10 @@ export function Dashboard() {
 
           <h3>Technical Approach</h3>
           <p>
-            This tool emphasizes <strong>visualization and correlation</strong>{" "}
-            over predictive modeling. All data has been preprocessed and
-            aggregated to yearly statistics for efficient web delivery. The
-            interface uses Mapbox GL JS for interactive geospatial visualization
-            and Recharts for time series analysis.
+            This tool visualizes correlations to support early-stage
+            environmental analysis. Data sources include Landsat imagery,
+            Sentinel-1 SAR, and DEA mangroves combined with IPCC carbon
+            coefficients.
           </p>
 
           <h3>Usage</h3>
@@ -124,6 +120,10 @@ export function Dashboard() {
             <strong>Dashboard</strong> provides overview statistics and trends
             across the study period.
           </p>
+        </div>
+
+        <div className="dashboard-section">
+          <Credits />
         </div>
       </div>
     </div>

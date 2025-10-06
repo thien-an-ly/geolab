@@ -78,7 +78,7 @@ export function FeatureInfo({ feature, layerType, year }: FeatureInfoProps) {
       </div>
       {isCarbonLayer && gridcodeValue !== undefined && (
         <div className="property-row">
-          <span className="property-key">Carbon Amount (TCO2):</span>
+          <span className="property-key">Carbon Amount (tCO₂):</span>
           <span className="property-value">{formatValue(gridcodeValue)}</span>
         </div>
       )}

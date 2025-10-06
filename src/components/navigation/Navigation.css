@@ -36,9 +36,7 @@
   font-weight: 800;
   letter-spacing: 1px;
   color: var(--color-cyan);
-  text-shadow: 2px 2px 4px var(--color-shadow-default);
   font-family: var(--font-display);
-  -webkit-text-stroke: 0.5px var(--color-navy-darker);
   line-height: 1.2;
 }
 

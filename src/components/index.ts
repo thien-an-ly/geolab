@@ -1,4 +1,5 @@
 export { ControlSidebar } from "./control-sidebar";
+export { Credits } from "./credits";
 export { Dashboard } from "./dashboard";
 export { LayerControl } from "./layer-control";
 export { Legend } from "./legend";

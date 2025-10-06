@@ -17,7 +17,7 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
           />
           <h1>Project GeoLab</h1>
         </div>
-        <p>Ecological indicators and carbon degradation analysis</p>
+        <p>Ecological health indicators and degradation analysis</p>
       </div>
       <div className="nav-tabs">
         <button

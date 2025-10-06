@@ -50,7 +50,7 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
   },
   {
     id: "flood",
-    name: "Flood Inundation",
+    name: "Seasonal Flood Inundation",
     layerType: "flood",
     dataUrl: `${
       import.meta.env.BASE_URL
@@ -69,7 +69,7 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
   },
   {
     id: "carbon",
-    name: "Estimated Carbon (TCO2)",
+    name: "Estimated Carbon (tCO₂)",
     layerType: "carbon",
     dataUrl: `${
       import.meta.env.BASE_URL
@@ -84,7 +84,7 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
   },
   {
     id: "carbon-gain",
-    name: "Estimated Carbon gain (TCO2)",
+    name: "Estimated Carbon gain (tCO₂)",
     layerType: "carbon-gain",
     dataUrl: `${
       import.meta.env.BASE_URL
@@ -100,7 +100,7 @@ export const DATA_SOURCES_CONFIG: DataSourceConfig[] = [
   },
   {
     id: "carbon-loss",
-    name: "Estimated Carbon loss (TCO2)",
+    name: "Estimated Carbon loss (tCO₂)",
     layerType: "carbon-loss",
     dataUrl: `${
       import.meta.env.BASE_URL
