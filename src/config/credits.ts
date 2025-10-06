@@ -36,7 +36,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Thomas Grassia",
     expertise: "GIS undergraduate",
-    education: "BSc in Geospatial Science, University of Arizona",
+    education: "BSc in Geospatial Science, Arizona State University",
     linkedin: "https://www.linkedin.com/in/thomas-grassia-4b70b6156/",
     website: "https://www.thomasg.dance/",
   },
