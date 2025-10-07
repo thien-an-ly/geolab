@@ -72,3 +72,21 @@
   text-align: center;
   padding: 2rem;
 }
+
+/* Scrollbar Styling */
+#dashboard::-webkit-scrollbar {
+  width: 8px;
+}
+
+#dashboard::-webkit-scrollbar-track {
+  background: var(--color-background-panel);
+}
+
+#dashboard::-webkit-scrollbar-thumb {
+  background: var(--color-background-card);
+  border-radius: 4px;
+}
+
+#dashboard::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan-subtle);
+}
