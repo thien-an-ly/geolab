@@ -1,3 +1,5 @@
+export { BottomSidebar } from "./bottom-sidebar";
+export { CarbonPieChart } from "./carbon-pie-chart";
 export { ControlSidebar } from "./control-sidebar";
 export { Credits } from "./credits";
 export { Dashboard } from "./dashboard";
@@ -7,4 +9,3 @@ export { MapView } from "./map-view";
 export { Navigation } from "./navigation";
 export { TimeSeriesChart } from "./time-series-chart";
 export { TimeSlider } from "./time-slider";
-export { BottomSidebar } from "./bottom-sidebar";

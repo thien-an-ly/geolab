@@ -1,0 +1,127 @@
+/**
+ * Carbon Pie Chart Component Styles
+ */
+
+.carbon-pie-chart {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--color-background-card);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.carbon-pie-chart h3 {
+  margin: 0 0 1.5rem 0;
+  color: var(--color-cyan);
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
+/* Horizontal layout for chart and stats */
+.carbon-pie-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.carbon-pie-chart-wrapper {
+  flex: 1;
+  min-width: 250px;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Recharts customization */
+.carbon-pie-chart .recharts-text {
+  fill: var(--color-text-secondary);
+  font-family: var(--font-body);
+}
+
+.carbon-pie-chart .recharts-legend-item {
+  margin-right: 20px !important;
+  display: inline-block !important;
+}
+
+.carbon-pie-chart .recharts-legend-wrapper {
+  position: relative !important;
+  margin-top: 10px !important;
+}
+
+.carbon-pie-chart .pie-legend-text {
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.carbon-pie-chart .recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.carbon-pie-chart .recharts-default-tooltip {
+  background-color: var(--color-background-overlay) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.carbon-pie-chart .recharts-tooltip-label {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+
+.carbon-pie-chart .recharts-tooltip-item {
+  color: var(--color-text-secondary) !important;
+  font-family: var(--font-body);
+}
+
+.carbon-stats {
+  flex-shrink: 0;
+  width: 280px;
+  padding: 20px;
+  background: var(--color-background-primary);
+  border-radius: 6px;
+  border: 1px solid var(--color-border-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carbon-stats p {
+  margin: 12px 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.carbon-stats p:first-child {
+  margin-top: 0;
+}
+
+.carbon-stats p:last-child {
+  margin-bottom: 0;
+}
+
+.carbon-stats strong {
+  color: var(--color-cyan-light);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Responsive: Stack pie chart content on smaller screens */
+@media (max-width: 768px) {
+  .carbon-pie-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .carbon-stats {
+    width: 100%;
+  }
+}

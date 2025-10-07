@@ -26,3 +26,10 @@ export interface FeatureClickData {
   properties: Record<string, unknown>;
   layerType: MapLayerType;
 }
+
+export interface PieChartDataItem {
+  name: string;
+  value: number;
+  color: string;
+  [key: string]: string | number;
+}

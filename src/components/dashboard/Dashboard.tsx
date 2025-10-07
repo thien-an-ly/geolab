@@ -1,20 +1,27 @@
 import { useState, useEffect } from "react";
 import { TimeSeriesChart } from "../time-series-chart";
+import { CarbonPieChart } from "../carbon-pie-chart";
 import { Credits } from "../credits";
-import { loadStatsData } from "../../utils/loadStatsData";
+import { loadStatsData, loadCarbonData } from "../../utils/loadStatsData";
 import type { TimeSeriesData } from "../../types";
+import type { CarbonStats } from "../../utils/loadStatsData";
 import "./Dashboard.css";
 
 export function Dashboard() {
   const [chartData, setChartData] = useState<TimeSeriesData[]>([]);
+  const [carbonData, setCarbonData] = useState<CarbonStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const statsData = await loadStatsData();
+        const [statsData, carbon] = await Promise.all([
+          loadStatsData(),
+          loadCarbonData(),
+        ]);
         setChartData(statsData as TimeSeriesData[]);
+        setCarbonData(carbon);
         //eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         // console.error("Failed to load stats data:", error);
@@ -33,10 +40,17 @@ export function Dashboard() {
           {loading ? (
             <div className="dashboard-message">Loading data...</div>
           ) : chartData.length > 0 ? (
-            <TimeSeriesChart
-              data={chartData}
-              title="Yearly Trends - Kakadu National Park (2014-2024)"
-            />
+            <div className="dashboard-charts-grid">
+              <div className="chart-container">
+                <TimeSeriesChart
+                  data={chartData}
+                  title="Yearly Trends - Kakadu National Park (2014-2024)"
+                />
+              </div>
+              <div className="chart-container">
+                {carbonData && <CarbonPieChart data={carbonData} />}
+              </div>
+            </div>
           ) : (
             <div className="dashboard-message">No data available</div>
           )}

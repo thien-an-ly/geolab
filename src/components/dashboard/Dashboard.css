@@ -73,6 +73,25 @@
   padding: 2rem;
 }
 
+/* Charts Grid Layout */
+.dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive: Stack charts on smaller screens */
+@media (max-width: 1024px) {
+  .dashboard-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Scrollbar Styling */
 #dashboard::-webkit-scrollbar {
   width: 8px;

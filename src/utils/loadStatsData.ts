@@ -3,7 +3,20 @@
  * from public/stats/ directory using config-driven approach
  */
 
-import { STAT_SOURCES } from "../config/statSources";
+import { STAT_SOURCES, CARBON_STATS_SOURCE } from "../config/statSources";
+
+/**
+ * Carbon statistics data structure
+ */
+export interface CarbonStats {
+  carbonStock: number;
+  carbonLoss: number;
+  carbonGain: number;
+}
+
+interface CarbonDataFile {
+  total: number;
+}
 
 /**
  * Parse CSV text to array of objects with dynamic typing
@@ -84,8 +97,37 @@ export async function loadStatsData() {
     });
 
     return merged;
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     // console.error("Error loading stats data:", error);
     return [];
+  }
+}
+
+/**
+ * Load carbon stock, loss, and gain statistics
+ */
+export async function loadCarbonData(): Promise<CarbonStats> {
+  try {
+    const responses = await Promise.all(
+      CARBON_STATS_SOURCE.map((source) => fetch(source.path))
+    );
+
+    const jsonData = await Promise.all(
+      responses.map((r) => r.json() as Promise<CarbonDataFile>)
+    );
+
+    return {
+      carbonStock: jsonData[0].total,
+      carbonLoss: jsonData[1].total,
+      carbonGain: jsonData[2].total,
+    };
+  } catch {
+    // Error loading carbon data
+    return {
+      carbonStock: 0,
+      carbonLoss: 0,
+      carbonGain: 0,
+    };
   }
 }
